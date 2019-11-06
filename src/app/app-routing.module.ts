@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ErrorComponent } from './error/error.component';
+import { ListTodosComponent } from './list-todos/list-todos.component';
 
 
 const routes: Routes = [
@@ -15,8 +16,12 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'welcome',
+    path: 'welcome/:name',
     component: WelcomeComponent
+  },
+  {
+    path: 'todos',
+    component: ListTodosComponent
   },
   {
     path: '**',
