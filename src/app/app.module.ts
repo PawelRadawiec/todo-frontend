@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { ErrorComponent } from './error/error.component';
 import { ListTodosComponent } from './list-todos/list-todos.component';
+import { YesNoPipe } from './shared/pipes/yes-no.pipe';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ListTodosComponent } from './list-todos/list-todos.component';
     WelcomeComponent,
     LoginComponent,
     ErrorComponent,
-    ListTodosComponent
+    ListTodosComponent,
+    YesNoPipe
   ],
   imports: [
     BrowserModule,
