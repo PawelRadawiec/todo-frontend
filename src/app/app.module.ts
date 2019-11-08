@@ -9,6 +9,8 @@ import { FormsModule } from '@angular/forms';
 import { ErrorComponent } from './components/error/error.component';
 import { ListTodosComponent } from './components/list-todos/list-todos.component';
 import { YesNoPipe } from './shared/pipes/yes-no.pipe';
+import { MenuComponent } from './components/menu/menu.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { YesNoPipe } from './shared/pipes/yes-no.pipe';
     LoginComponent,
     ErrorComponent,
     ListTodosComponent,
-    YesNoPipe
+    YesNoPipe,
+    MenuComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
