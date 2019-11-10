@@ -11,6 +11,7 @@ import { ListTodosComponent } from './components/list-todos/list-todos.component
 import { YesNoPipe } from './shared/pipes/yes-no.pipe';
 import { MenuComponent } from './components/menu/menu.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { LogoutComponent } from './components/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { FooterComponent } from './components/footer/footer.component';
     ListTodosComponent,
     YesNoPipe,
     MenuComponent,
-    FooterComponent
+    FooterComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
