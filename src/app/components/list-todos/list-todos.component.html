@@ -8,6 +8,9 @@
                 <th>target date</th>
             </tr>
         </thead>
+        <div class="container">
+            <button (click)="getAllTodos()" class="btn btn-success">search</button>
+        </div>
         <tbody *ngFor="let todo of todos">
             <tr>
                 <td>{{todo.description}}</td>
