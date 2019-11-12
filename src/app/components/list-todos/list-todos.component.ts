@@ -25,15 +25,14 @@ export class Todo {
   styleUrls: ['./list-todos.component.css']
 })
 export class ListTodosComponent implements OnInit {
-
-  todosSate$: Observable<Todo[]>;
   todos: Todo[] = [];
 
   constructor(
     private store: Store<State>,
   ) {
-    this.todosSate$ = this.store.pipe(select(selectTodos));
-    console.log('todosSate$', this.todosSate$);
+    this.store.pipe(select(selectTodos)).subscribe(todos => {
+      this.todos = todos;
+    });
   }
 
   ngOnInit() {
