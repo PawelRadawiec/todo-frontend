@@ -1,5 +1,8 @@
 <h1>My todos</h1>
 <div class="container">
+    <div class="container">
+        <button (click)="getAllTodos()" class="btn btn-success">search</button>
+    </div>
     <table class="table">
         <thead>
             <tr>
@@ -8,9 +11,7 @@
                 <th>target date</th>
             </tr>
         </thead>
-        <div class="container">
-            <button (click)="getAllTodos()" class="btn btn-success">search</button>
-        </div>
+
         <tbody *ngFor="let todo of todos">
             <tr>
                 <td>{{todo.description}}</td>
