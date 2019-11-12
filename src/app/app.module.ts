@@ -19,6 +19,7 @@ import { AppEffects } from './store/effects/app.effects';
 import { reducers, metaReducers } from './store/reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { TodoEffects } from './store/effects/todo.effects';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import { environment } from '../environments/environment';
         strictActionImmutability: true
       }
     }),
-    EffectsModule.forRoot([AppEffects]),
+    EffectsModule.forRoot([AppEffects, TodoEffects]),
     StoreModule.forRoot(reducers, {
       metaReducers, 
       runtimeChecks: {
