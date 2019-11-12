@@ -1,5 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoService } from 'src/app/shared/service/todo/todo.service';
+import { Store, select } from '@ngrx/store';
+import * as fromRoot from '../../store/reducers';
+import * as todoActions from '../../store/actions/todos.actions';
+import { Observable, Subscription } from 'rxjs';
+import { State } from '../../store/reducers';
+import { selectTodos } from 'src/app/store/selectors/todo.selector';
+import { AutoUnsubscribe } from "ngx-auto-unsubscribe";
+
 
 export class Todo {
   constructor(
@@ -17,21 +25,27 @@ export class Todo {
   templateUrl: './list-todos.component.html',
   styleUrls: ['./list-todos.component.css']
 })
+@AutoUnsubscribe()
 export class ListTodosComponent implements OnInit {
-
   todos: Todo[] = [];
+  private subscriptions: Subscription[] = [];
 
   constructor(
-    private todoService: TodoService
-  ) { }
+    private store: Store<State>,
+  ) {
+    this.subscriptions.push(
+      this.store.pipe(select(selectTodos)).subscribe(todos => {
+        this.todos = todos;
+      })
+    );
 
-  ngOnInit() {
   }
 
+  ngOnInit() { }
+  ngOnDestroy() { }
+
   getAllTodos() {
-    this.todoService.getAllTodos().subscribe(response => {
-      this.todos = response;
-    });
+    this.store.dispatch(new todoActions.SearchRequest());
   }
 
 }

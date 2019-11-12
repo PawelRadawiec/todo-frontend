@@ -116,6 +116,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "todo-frontend"
+    }
+  },
+  "defaultProject": "todo-frontend",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
