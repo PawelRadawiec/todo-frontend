@@ -1,9 +1,10 @@
 <div class="container">
-
+    <app-add-todo></app-add-todo>
     <div class="container header">
         <h4>My todos</h4>
     </div>
     <div class="text-right">
+        <button (click)="openAddModal()" class="btn btn-primary btn-success-space btn-space">Add</button>
         <button (click)="getAllTodos()" class="btn btn-success btn-success-space">Search</button>
     </div>
     <table class="table">

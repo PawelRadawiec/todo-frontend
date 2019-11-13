@@ -20,6 +20,8 @@ import { reducers, metaReducers } from './store/reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { TodoEffects } from './store/todos/todo.effects';
+import { AddTodoComponent } from './components/add-todo/add-todo.component';
+import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -31,11 +33,13 @@ import { TodoEffects } from './store/todos/todo.effects';
     YesNoPipe,
     MenuComponent,
     FooterComponent,
-    LogoutComponent
+    LogoutComponent,
+    AddTodoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    NgbModule,
     FormsModule,
     HttpClientModule,
     StoreModule.forRoot(reducers, {

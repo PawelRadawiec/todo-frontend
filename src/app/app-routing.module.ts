@@ -6,6 +6,7 @@ import { ErrorComponent } from './components/error/error.component';
 import { ListTodosComponent } from './components/list-todos/list-todos.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { RouteGuardService } from './shared/service/route-guard.service';
+import { AddTodoComponent } from './components/add-todo/add-todo.component';
 
 
 const routes: Routes = [
@@ -30,6 +31,11 @@ const routes: Routes = [
   {
     path: 'todos',
     component: ListTodosComponent,
+    canActivate: [RouteGuardService]
+  },
+  {
+    path: 'add-todo',
+    component: AddTodoComponent,
     canActivate: [RouteGuardService]
   },
   {

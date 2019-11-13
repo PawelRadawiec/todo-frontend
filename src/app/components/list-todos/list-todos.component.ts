@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { TodoService } from 'src/app/shared/service/todo/todo.service';
 import { Store, select } from '@ngrx/store';
 import * as fromRoot from '../../store/reducers';
@@ -8,6 +8,7 @@ import { State } from '../../store/reducers';
 import { selectTodos } from 'src/app/store/selectors/todo.selector';
 import { AutoUnsubscribe } from "ngx-auto-unsubscribe";
 import { Todo } from '../models/todo.model';
+import { AddTodoComponent } from '../add-todo/add-todo.component';
 
 
 @Component({
@@ -19,6 +20,7 @@ import { Todo } from '../models/todo.model';
 export class ListTodosComponent implements OnInit {
   todos: Todo[] = [];
   private subscriptions: Subscription[] = [];
+  @ViewChild(AddTodoComponent, {static: false}) child: AddTodoComponent;
 
   constructor(
     private store: Store<State>,
@@ -40,6 +42,10 @@ export class ListTodosComponent implements OnInit {
 
   getById(id: number) {
     this.store.dispatch(new todoActions.TodoGetByIdRequest(id));
+  }
+
+  openAddModal() {
+    this.child.open();
   }
 
 }
