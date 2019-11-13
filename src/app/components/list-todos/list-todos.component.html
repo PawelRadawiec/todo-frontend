@@ -9,6 +9,7 @@
                 <th>description</th>
                 <th>done</th>
                 <th>target date</th>
+                <th>EDIT</th>
             </tr>
         </thead>
 
@@ -17,6 +18,7 @@
                 <td>{{todo.description}}</td>
                 <td>{{todo.done | yesNo}}</td>
                 <td>{{todo.targetDate | date | lowercase}}</td>
+                <td (click)=getById(todo.id)></td>
             </tr>
         </tbody>
     </table>

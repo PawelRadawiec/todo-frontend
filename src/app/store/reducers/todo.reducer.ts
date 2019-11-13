@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
-import { Todo } from 'src/app/components/list-todos/list-todos.component';
 import * as todoActions from '../actions/todos.actions';
- 
+import { Todo } from 'src/app/components/models/todo.model';
+
 export interface State {
   userName?: string;
 }
@@ -9,19 +9,27 @@ export interface State {
 export const todoFeatureKey = 'todo';
 
 export interface State {
-  todos: Todo[]
+  todos: Todo[],
+  todo: Todo
 }
 
 export const initialState: State = {
-    todos: []
+  todos: [],
+  todo: null
 };
 
 export function reducer(state = initialState, action: todoActions.TodoActions): State {
   switch (action.type) {
     case todoActions.SEARCH_RESPONSE: {
       return {
-        ...state, 
+        ...state,
         todos: action.response
+      }
+    }
+    case todoActions.GET_BY_ID_RESPONSE: {
+      return {
+        ...state,
+        todo: action.response
       }
     }
     default:

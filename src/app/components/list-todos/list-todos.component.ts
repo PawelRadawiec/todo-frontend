@@ -7,18 +7,8 @@ import { Observable, Subscription } from 'rxjs';
 import { State } from '../../store/reducers';
 import { selectTodos } from 'src/app/store/selectors/todo.selector';
 import { AutoUnsubscribe } from "ngx-auto-unsubscribe";
+import { Todo } from '../models/todo.model';
 
-
-export class Todo {
-  constructor(
-    public id: number,
-    public description: string,
-    public done: boolean,
-    public targetDate: Date
-  ) {
-
-  }
-}
 
 @Component({
   selector: 'app-list-todos',
@@ -46,6 +36,10 @@ export class ListTodosComponent implements OnInit {
 
   getAllTodos() {
     this.store.dispatch(new todoActions.SearchRequest());
+  }
+
+  getById(id: number) {
+    this.store.dispatch(new todoActions.TodoGetByIdRequest(id));
   }
 
 }

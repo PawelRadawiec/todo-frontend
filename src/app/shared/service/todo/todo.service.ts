@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Todo } from 'src/app/components/list-todos/list-todos.component';
 import { HttpClient } from '@angular/common/http';
+import { Todo } from 'src/app/components/models/todo.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,5 +13,10 @@ export class TodoService {
 
   getAllTodos() {
     return this.http.get<Todo[]>('http://localhost:8080/todo/todos');
+  }
+
+  getById(id: number) {
+    console.log('ID: ', id);
+    return this.http.get<Todo>(`http://localhost:8080/todo/${id}`);
   }
 }
