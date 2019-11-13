@@ -6,7 +6,7 @@ import {
   MetaReducer
 } from '@ngrx/store';
 import { environment } from '../../../environments/environment';
-import * as fromTodo from './todo.reducer';
+import * as fromTodo from '../todos/todo.reducer';
 
 
 export interface State {

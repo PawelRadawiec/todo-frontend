@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TodoService } from 'src/app/shared/service/todo/todo.service';
 import { Store, select } from '@ngrx/store';
 import * as fromRoot from '../../store/reducers';
-import * as todoActions from '../../store/actions/todos.actions';
+import * as todoActions from '../../store/todos/todos.actions';
 import { Observable, Subscription } from 'rxjs';
 import { State } from '../../store/reducers';
 import { selectTodos } from 'src/app/store/selectors/todo.selector';

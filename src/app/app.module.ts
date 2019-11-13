@@ -19,7 +19,7 @@ import { AppEffects } from './store/effects/app.effects';
 import { reducers, metaReducers } from './store/reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
-import { TodoEffects } from './store/effects/todo.effects';
+import { TodoEffects } from './store/todos/todo.effects';
 
 @NgModule({
   declarations: [

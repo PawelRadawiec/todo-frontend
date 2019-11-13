@@ -4,7 +4,7 @@ import { TodoService } from 'src/app/shared/service/todo/todo.service';
 import { Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { switchMap, map, concatMap } from 'rxjs/operators';
-import * as todoActions from '../actions/todos.actions';
+import * as todoActions from './todos.actions';
 
 
 @Injectable()
