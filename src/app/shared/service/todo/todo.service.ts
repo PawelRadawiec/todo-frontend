@@ -21,7 +21,11 @@ export class TodoService {
   }
 
   saveTodo(request: Todo) {
-    console.log('REQUEST: ', request);
     return this.http.post<Todo>('http://localhost:8080/todo/create', request);
+  }
+
+  editTodo(request: Todo) {
+    console.log('REQUEST: ', request);
+    return this.http.put<Todo>('http://localhost:8080/todo/update', request);
   }
 }

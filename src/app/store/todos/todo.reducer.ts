@@ -9,12 +9,14 @@ export const todoFeatureKey = 'todo';
 
 export interface State {
   todos: Todo[],
-  todo: Todo
+  todoById: Todo,
+  editResponse: Todo
 }
 
 export const initialState: State = {
   todos: [],
-  todo: null
+  todoById: null,
+  editResponse: null
 };
 
 export function reducer(state = initialState, action: todoActions.TodoActions): State {
@@ -23,14 +25,21 @@ export function reducer(state = initialState, action: todoActions.TodoActions): 
       return {
         ...state,
         todos: action.response
-      }
+      };
     }
     case todoActions.GET_BY_ID_RESPONSE: {
       return {
         ...state,
-        todo: action.response
-      }
+        todoById: action.response
+      };
     }
+    case todoActions.EDIT_RESPONSE: {
+      return {
+        ...state,
+        editResponse: action.response
+      };
+    }
+
     default:
       return state;
   }

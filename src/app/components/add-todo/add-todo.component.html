@@ -1,6 +1,6 @@
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <h4 class="modal-title" id="modal-basic-title">{{getButtonName()}} todo</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -8,12 +8,11 @@
   <div class="modal-body">
     <form>
       <div class="form-group">
-        <label for="description">Description</label>
+        <label>Description</label>
         <div class="input-group">
           <input
             [(ngModel)]="request.description"
             name="description"
-            id="description"
             class="form-control"
             type="text"
           >
@@ -22,12 +21,6 @@
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="saveTodo()">Save</button>
+    <button type="button" class="btn btn-outline-dark" (click)="saveTodo()">{{getButtonName()}}</button>
   </div>
 </ng-template>
-
-<!-- <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button> -->
-
-<hr>
-
-<pre>{{closeResult}}</pre>

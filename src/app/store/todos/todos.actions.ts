@@ -7,6 +7,8 @@ export const GET_BY_ID_REQUEST = '[Todo] TodoGetByIdRequest';
 export const GET_BY_ID_RESPONSE = '[Todo] TodoGetByIdResponse';
 export const CREATE_REQUEST = '[Todo] CreateTodoRequest';
 export const CREATE_RESPONSE = '[Todo] CreateTodoResponse';
+export const EDIT_REQUEST = '[Todo] TodoEditRequest';
+export const EDIT_RESPONSE = '[Todo] TodoEditResponse';
 
 
 export class SearchRequest implements Action {
@@ -53,10 +55,28 @@ export class CreateTodoResponse implements Action {
   }
 }
 
+export class TodoEditRequest implements Action {
+  readonly type = EDIT_REQUEST;
+
+  constructor(public request: Todo) {
+
+  }
+}
+
+export class TodoEditResponse implements Action {
+  readonly type = EDIT_RESPONSE;
+
+  constructor(public response: Todo) {
+
+  }
+}
+
 
 export type TodoActions = SearchRequest
   | SearchResponse
   | TodoGetByIdRequest
   | TodoGetByIdResponse
   | CreateTodoRequest
-  | CreateTodoResponse;
+  | CreateTodoResponse
+  | TodoEditRequest
+  | TodoEditResponse;

@@ -1,36 +1,56 @@
-import {Component, OnInit, Injectable, ViewChild, ElementRef} from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef, OnDestroy} from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import {TodoService} from '../../shared/service/todo/todo.service';
 import {Todo} from '../models/todo.model';
-import {Store} from '@ngrx/store';
+import {select, Store} from '@ngrx/store';
 import {State} from '../../store/reducers';
-import {CreateTodoRequest} from '../../store/todos/todos.actions';
+import {CreateTodoRequest, SearchRequest, TodoEditRequest} from '../../store/todos/todos.actions';
+import {Subscription} from 'rxjs';
+import {selectGetByIdTodo} from '../../store/selectors/todo.selector';
+import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
 
 @Component({
   selector: 'app-add-todo',
   templateUrl: './add-todo.component.html',
   styleUrls: ['./add-todo.component.css']
 })
-export class AddTodoComponent implements OnInit {
+@AutoUnsubscribe()
+export class AddTodoComponent implements OnInit, OnDestroy {
+  @ViewChild('content', {static: false}) content: ElementRef;
   closeResult: string;
   request: Todo = new Todo();
-  @ViewChild('content', {static: false}) content: ElementRef;
+  private subscriptions: Subscription[] = [];
 
   constructor(
     private modalService: NgbModal,
     private store: Store<State>,
   ) {
+    this.subscriptions.push(
+      this.store.pipe(select(selectGetByIdTodo)).subscribe(todo => {
+        if (todo) {
+          this.request = todo;
+        }
+      })
+    );
   }
 
   ngOnInit() {
   }
 
+  ngOnDestroy() {
+  }
+
   saveTodo() {
-    this.store.dispatch(new CreateTodoRequest(this.request));
+    if (this.request && !this.request.id) {
+      this.store.dispatch(new CreateTodoRequest(this.request));
+    } else {
+      this.store.dispatch(new TodoEditRequest(this.request));
+    }
+    this.closeModal();
   }
 
   closeModal() {
-    // this.modalService.close();
+    this.modalService.dismissAll();
+    this.store.dispatch(new SearchRequest());
   }
 
   open() {
@@ -50,4 +70,9 @@ export class AddTodoComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
+
+  getButtonName() {
+    return this.request && this.request.id ? 'Edit' : 'Create';
+  }
+
 }

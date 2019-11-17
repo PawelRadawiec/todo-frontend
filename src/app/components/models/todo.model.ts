@@ -3,9 +3,9 @@ export class Todo {
   id: number;
   description: string;
   done: string;
-  targetDate: Date
+  targetDate: Date;
 
-  constructor() {
-
+  constructor(props = {}) {
+    Object.assign(this, props);
   }
 }

@@ -43,9 +43,11 @@ export class ListTodosComponent implements OnInit, OnDestroy {
 
   getById(id: number) {
     this.store.dispatch(new todoActions.TodoGetByIdRequest(id));
+    this.openAddModal();
   }
 
   openAddModal() {
+    this.store.dispatch(new todoActions.TodoGetByIdResponse(new Todo()));
     this.child.open();
   }
 
