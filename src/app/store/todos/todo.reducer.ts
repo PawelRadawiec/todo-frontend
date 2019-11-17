@@ -1,6 +1,5 @@
-import { Action } from '@ngrx/store';
 import * as todoActions from './todos.actions';
-import { Todo } from 'src/app/components/models/todo.model';
+import {Todo} from 'src/app/components/models/todo.model';
 
 export interface State {
   userName?: string;

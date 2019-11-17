@@ -1,14 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { TodoService } from 'src/app/shared/service/todo/todo.service';
-import { Store, select } from '@ngrx/store';
-import * as fromRoot from '../../store/reducers';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Store, select} from '@ngrx/store';
 import * as todoActions from '../../store/todos/todos.actions';
-import { Observable, Subscription } from 'rxjs';
-import { State } from '../../store/reducers';
-import { selectTodos } from 'src/app/store/selectors/todo.selector';
-import { AutoUnsubscribe } from "ngx-auto-unsubscribe";
-import { Todo } from '../models/todo.model';
-import { AddTodoComponent } from '../add-todo/add-todo.component';
+import {Subscription} from 'rxjs';
+import {State} from '../../store/reducers';
+import {selectTodos} from 'src/app/store/selectors/todo.selector';
+import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
+import {Todo} from '../models/todo.model';
+import {AddTodoComponent} from '../add-todo/add-todo.component';
 
 
 @Component({
@@ -17,7 +15,7 @@ import { AddTodoComponent } from '../add-todo/add-todo.component';
   styleUrls: ['./list-todos.component.css']
 })
 @AutoUnsubscribe()
-export class ListTodosComponent implements OnInit {
+export class ListTodosComponent implements OnInit, OnDestroy {
   todos: Todo[] = [];
   private subscriptions: Subscription[] = [];
   @ViewChild(AddTodoComponent, {static: false}) child: AddTodoComponent;
@@ -33,8 +31,11 @@ export class ListTodosComponent implements OnInit {
 
   }
 
-  ngOnInit() { }
-  ngOnDestroy() { }
+  ngOnInit() {
+  }
+
+  ngOnDestroy() {
+  }
 
   getAllTodos() {
     this.store.dispatch(new todoActions.SearchRequest());
