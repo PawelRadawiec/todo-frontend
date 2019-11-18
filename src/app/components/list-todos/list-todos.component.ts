@@ -1,24 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { TodoService } from 'src/app/shared/service/todo/todo.service';
-import { Store, select } from '@ngrx/store';
-import * as fromRoot from '../../store/reducers';
-import * as todoActions from '../../store/actions/todos.actions';
-import { Observable, Subscription } from 'rxjs';
-import { State } from '../../store/reducers';
-import { selectTodos } from 'src/app/store/selectors/todo.selector';
-import { AutoUnsubscribe } from "ngx-auto-unsubscribe";
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Store, select} from '@ngrx/store';
+import * as todoActions from '../../store/todos/todos.actions';
+import {Subscription} from 'rxjs';
+import {State} from '../../store/reducers';
+import {selectTodos} from 'src/app/store/selectors/todo.selector';
+import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
+import {Todo} from '../models/todo.model';
+import {AddTodoComponent} from '../add-todo/add-todo.component';
 
-
-export class Todo {
-  constructor(
-    public id: number,
-    public description: string,
-    public done: boolean,
-    public targetDate: Date
-  ) {
-
-  }
-}
 
 @Component({
   selector: 'app-list-todos',
@@ -26,9 +15,10 @@ export class Todo {
   styleUrls: ['./list-todos.component.css']
 })
 @AutoUnsubscribe()
-export class ListTodosComponent implements OnInit {
+export class ListTodosComponent implements OnInit, OnDestroy {
   todos: Todo[] = [];
   private subscriptions: Subscription[] = [];
+  @ViewChild(AddTodoComponent, {static: false}) child: AddTodoComponent;
 
   constructor(
     private store: Store<State>,
@@ -41,11 +31,27 @@ export class ListTodosComponent implements OnInit {
 
   }
 
-  ngOnInit() { }
-  ngOnDestroy() { }
+  ngOnInit() {
+  }
+
+  ngOnDestroy() {
+  }
 
   getAllTodos() {
     this.store.dispatch(new todoActions.SearchRequest());
+  }
+
+  getById(id: number) {
+    this.store.dispatch(new todoActions.TodoGetByIdRequest(id));
+    this.openAddModal();
+  }
+
+  deleteById(id: number) {
+    this.store.dispatch(new todoActions.TodoDeleteById(id))
+  }
+
+  openAddModal() {
+    this.child.open();
   }
 
 }
