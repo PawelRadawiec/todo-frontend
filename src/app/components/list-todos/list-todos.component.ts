@@ -47,7 +47,6 @@ export class ListTodosComponent implements OnInit, OnDestroy {
   }
 
   openAddModal() {
-    this.store.dispatch(new todoActions.TodoGetByIdResponse(new Todo()));
     this.child.open();
   }
 

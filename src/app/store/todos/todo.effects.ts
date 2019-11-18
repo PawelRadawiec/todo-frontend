@@ -1,9 +1,9 @@
-import {Injectable} from '@angular/core';
-import {Actions, Effect, ofType} from '@ngrx/effects';
-import {TodoService} from 'src/app/shared/service/todo/todo.service';
-import {Observable} from 'rxjs';
-import {Action} from '@ngrx/store';
-import {switchMap, map, concatMap} from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { Actions, Effect, ofType } from '@ngrx/effects';
+import { TodoService } from 'src/app/shared/service/todo/todo.service';
+import { Observable } from 'rxjs';
+import { Action } from '@ngrx/store';
+import { switchMap, map, concatMap } from 'rxjs/operators';
 import * as todoActions from './todos.actions';
 
 
@@ -43,16 +43,14 @@ export class TodoEffects {
   );
 
   @Effect()
-  createRequest: Observable<Action> = this.actions$.pipe(
+  createRequest = this.actions$.pipe(
     ofType(todoActions.CREATE_REQUEST),
-    concatMap((action: todoActions.CreateTodoRequest) => {
-      return this.todoService.saveTodo(action.request)
+    concatMap((action: todoActions.CreateTodoRequest) =>
+      this.todoService.saveTodo(action.request)
         .pipe(
-          map((todo) => {
-            return new todoActions.TodoGetByIdResponse(todo);
-          })
-        );
-    })
+          concatMap((todo) => ([]))
+        )
+    )
   );
 
   @Effect()

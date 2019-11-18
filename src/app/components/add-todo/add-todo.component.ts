@@ -1,12 +1,13 @@
-import {Component, OnInit, ViewChild, ElementRef, OnDestroy} from '@angular/core';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import {Todo} from '../models/todo.model';
-import {select, Store} from '@ngrx/store';
-import {State} from '../../store/reducers';
-import {CreateTodoRequest, SearchRequest, TodoEditRequest} from '../../store/todos/todos.actions';
-import {Subscription} from 'rxjs';
-import {selectGetByIdTodo} from '../../store/selectors/todo.selector';
-import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Todo } from '../models/todo.model';
+import { select, Store } from '@ngrx/store';
+import { State } from '../../store/reducers';
+import { CreateTodoRequest, SearchRequest, TodoEditRequest } from '../../store/todos/todos.actions';
+import { Subscription } from 'rxjs';
+import { selectGetByIdTodo } from '../../store/selectors/todo.selector';
+import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
+import * as cloneDeep from 'lodash/cloneDeep';
 
 @Component({
   selector: 'app-add-todo',
@@ -15,9 +16,8 @@ import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
 })
 @AutoUnsubscribe()
 export class AddTodoComponent implements OnInit, OnDestroy {
-  @ViewChild('content', {static: false}) content: ElementRef;
-  closeResult: string;
-  request: Todo = new Todo();
+  @ViewChild('content', { static: false }) content: ElementRef;
+  todo: Todo;
   private subscriptions: Subscription[] = [];
 
   constructor(
@@ -27,7 +27,9 @@ export class AddTodoComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.store.pipe(select(selectGetByIdTodo)).subscribe(todo => {
         if (todo) {
-          this.request = todo;
+          this.todo = cloneDeep(todo);
+        } else {
+          this.todo = new Todo();
         }
       })
     );
@@ -40,10 +42,10 @@ export class AddTodoComponent implements OnInit, OnDestroy {
   }
 
   saveTodo() {
-    if (this.request && !this.request.id) {
-      this.store.dispatch(new CreateTodoRequest(this.request));
+    if (this.todo && !this.todo.id) {
+      this.store.dispatch(new CreateTodoRequest(this.todo));
     } else {
-      this.store.dispatch(new TodoEditRequest(this.request));
+      this.store.dispatch(new TodoEditRequest(this.todo));
     }
     this.closeModal();
   }
@@ -51,28 +53,15 @@ export class AddTodoComponent implements OnInit, OnDestroy {
   closeModal() {
     this.modalService.dismissAll();
     this.store.dispatch(new SearchRequest());
+    this.todo = new Todo();
   }
 
   open() {
-    this.modalService.open(this.content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
+    this.modalService.open(this.content, { ariaLabelledBy: 'modal-basic-title' });
   }
 
   getButtonName() {
-    return this.request && this.request.id ? 'Edit' : 'Create';
+    return this.todo && this.todo.id ? 'Edit' : 'Create';
   }
 
 }
