@@ -17,6 +17,7 @@ import * as cloneDeep from 'lodash/cloneDeep';
 @AutoUnsubscribe()
 export class AddTodoComponent implements OnInit, OnDestroy {
   @ViewChild('content', { static: false }) content: ElementRef;
+
   todo: Todo;
   private subscriptions: Subscription[] = [];
 

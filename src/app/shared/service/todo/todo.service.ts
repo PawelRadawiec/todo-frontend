@@ -25,7 +25,10 @@ export class TodoService {
   }
 
   editTodo(request: Todo) {
-    console.log('REQUEST: ', request);
     return this.http.put<Todo>('http://localhost:8080/todo/update', request);
+  }
+
+  delete(id: number) {
+    return this.http.delete<void>(`http://localhost:8080/todo/delete/${id}`);
   }
 }

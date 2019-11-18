@@ -66,5 +66,18 @@ export class TodoEffects {
     })
   );
 
+  @Effect()
+  deleteTodoRequest: Observable<Action> = this.actions$.pipe(
+    ofType(todoActions.DELETE_BY_ID),
+    concatMap((action: todoActions.TodoDeleteById) => {
+      return this.todoService.delete(action.todoId)
+        .pipe(
+          map(() => {
+            return new todoActions.SearchRequest();
+          })
+        );
+    })
+  );
+
 }
 

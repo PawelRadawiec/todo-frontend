@@ -1,5 +1,5 @@
-import {Action} from '@ngrx/store';
-import {Todo} from 'src/app/components/models/todo.model';
+import { Action } from '@ngrx/store';
+import { Todo } from 'src/app/components/models/todo.model';
 
 export const SEARCH_REQUEST = '[Todo] SearchRequest';
 export const SEARCH_RESPONSE = '[Todo] SearchResponse';
@@ -9,6 +9,7 @@ export const CREATE_REQUEST = '[Todo] CreateTodoRequest';
 export const CREATE_RESPONSE = '[Todo] CreateTodoResponse';
 export const EDIT_REQUEST = '[Todo] TodoEditRequest';
 export const EDIT_RESPONSE = '[Todo] TodoEditResponse';
+export const DELETE_BY_ID = '[Todo] TodoDeleteById';
 
 
 export class SearchRequest implements Action {
@@ -71,6 +72,13 @@ export class TodoEditResponse implements Action {
   }
 }
 
+export class TodoDeleteById implements Action {
+  readonly type = DELETE_BY_ID;
+  constructor(public todoId: number) {
+
+  }
+}
+
 
 export type TodoActions = SearchRequest
   | SearchResponse
@@ -79,4 +87,5 @@ export type TodoActions = SearchRequest
   | CreateTodoRequest
   | CreateTodoResponse
   | TodoEditRequest
-  | TodoEditResponse;
+  | TodoEditResponse
+  | TodoDeleteById;
