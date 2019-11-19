@@ -1,11 +1,21 @@
-.btn-space {
-    margin-right: 5px;
-}
-
-.btn-success-space {
+.btn-table {
+    background: none;
+    border: 2px solid #353b48;
     margin-bottom: 8px;
+    margin-left: 3px;
 }
 
 .header {
     margin-top: 10px;
+}
+
+.btn-action {
+    background: none;
+    border: 2px solid #353b48;
+    margin-left: 3px;
+}
+
+.table {
+    border: none;
+    color: white;
 }
