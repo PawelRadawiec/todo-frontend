@@ -1,3 +1,12 @@
+
+.card {
+    margin-top: 70px;
+    border: 2px solid #353b48;
+    background-color: #353b48;
+    color: white;
+    width: 350px;
+}
+
 .btn-table {
     background: none;
     border: 2px solid #353b48;
@@ -11,8 +20,9 @@
 
 .btn-action {
     background: none;
-    border: 2px solid #353b48;
-    margin-left: 3px;
+    border: 2px solid #94e4af;
+    margin-top: 10px;
+    color: white;
 }
 
 .table {

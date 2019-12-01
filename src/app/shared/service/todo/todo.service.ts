@@ -13,10 +13,7 @@ export class TodoService {
   }
 
   getAllTodos() {
-    const headers = new HttpHeaders({
-      Authorization: this.createBasicAuthenticationHttpHeader()
-    });
-    return this.http.get<Todo[]>('http://localhost:8080/todo/todos', { headers });
+    return this.http.get<Todo[]>('http://localhost:8080/todo/todos');
   }
 
   getById(id: number) {
@@ -35,9 +32,4 @@ export class TodoService {
     return this.http.delete<void>(`http://localhost:8080/todo/delete/${id}`);
   }
 
-  createBasicAuthenticationHttpHeader() {
-    const username = 'user';
-    const password = 'password';
-    return 'Basic ' + window.btoa(username + ':' + password);
-  }
 }
