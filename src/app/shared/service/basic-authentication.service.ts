@@ -28,6 +28,22 @@ export class BasicAuthenticationService {
     );
   }
 
+  executeJwtAuthService(login: string, password: string) {
+    const body = {
+      username: login,
+      password: password
+    }
+    return this.http.post<any>('http://localhost:8080/authenticate', body).pipe(
+      map(
+        data => {
+          sessionStorage.setItem(AUTH_USER, login);
+          sessionStorage.setItem(TOKEN, `Bearer ${data.token}`);
+          return data;
+        })
+    );
+    
+  }
+
   getAuthUser() {
     return sessionStorage.getItem(AUTH_USER);
   }
