@@ -7,29 +7,31 @@ import { Todo } from 'src/app/components/models/todo.model';
 })
 export class TodoService {
 
+  baseUrl = 'http://localhost:8080';
+
   constructor(
     private http: HttpClient
   ) {
   }
 
   getAllTodos() {
-    return this.http.get<Todo[]>('http://localhost:8080/todo/todos');
+    return this.http.get<Todo[]>(`${this.baseUrl}/todo/todos`);
   }
 
   getById(id: number) {
-    return this.http.get<Todo>(`http://localhost:8080/todo/${id}`);
+    return this.http.get<Todo>(`${this.baseUrl}/todo/${id}`);
   }
 
   saveTodo(request: Todo) {
-    return this.http.post<Todo>('http://localhost:8080/todo/create', request);
+    return this.http.post<Todo>(`${this.baseUrl}/todo/create`, request);
   }
 
   editTodo(request: Todo) {
-    return this.http.put<Todo>('http://localhost:8080/todo/update', request);
+    return this.http.put<Todo>(`${this.baseUrl}/todo/update`, request);
   }
 
   delete(id: number) {
-    return this.http.delete<void>(`http://localhost:8080/todo/delete/${id}`);
+    return this.http.delete<void>(`${this.baseUrl}/todo/delete/${id}`);
   }
 
 }

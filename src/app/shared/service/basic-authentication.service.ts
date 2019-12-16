@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
+export const TOKEN = 'token';
+export const AUTH_USER = 'authUser';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,8 +20,8 @@ export class BasicAuthenticationService {
     return this.http.get<AuthenticationBean>('http://localhost:8080/basicauth', { headers }).pipe(
       map(
         data => {
-          sessionStorage.setItem('authUser', login);
-          sessionStorage.setItem('token', basicAuthHeaderString);
+          sessionStorage.setItem(AUTH_USER, login);
+          sessionStorage.setItem(TOKEN, basicAuthHeaderString);
           return data;
         }
       )
@@ -26,22 +29,22 @@ export class BasicAuthenticationService {
   }
 
   getAuthUser() {
-    return sessionStorage.getItem('authUser');
+    return sessionStorage.getItem(AUTH_USER);
   }
 
   getAuthToken() {
     if (this.getAuthUser()) {
-      return sessionStorage.getItem('token');
+      return sessionStorage.getItem(TOKEN);
     }
   }
 
   isUserLoggedIn() {
-    return sessionStorage.getItem('authUser') !== null;
+    return sessionStorage.getItem(AUTH_USER) !== null;
   }
 
   logout() {
-    sessionStorage.removeItem('authUser');
-    sessionStorage.removeItem('token');
+    sessionStorage.removeItem(AUTH_USER);
+    sessionStorage.removeItem(TOKEN);
   }
 }
 
