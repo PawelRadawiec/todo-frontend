@@ -12,7 +12,7 @@ import { YesNoPipe } from './shared/pipes/yes-no.pipe';
 import { MenuComponent } from './components/menu/menu.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LogoutComponent } from './components/logout/logout.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './store/effects/app.effects';
@@ -21,7 +21,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { TodoEffects } from './store/todos/todo.effects';
 import { AddTodoComponent } from './components/add-todo/add-todo.component';
-import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpInterceptorBasicAuthService } from './shared/service/http/http-interceptor-basic-auth.service';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,8 @@ import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgbModule,
     FormsModule,
     HttpClientModule,
+    EffectsModule.forRoot([AppEffects, TodoEffects]),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreModule.forRoot(reducers, {
       metaReducers,
       runtimeChecks: {
@@ -49,17 +52,11 @@ import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
         strictActionImmutability: true
       }
     }),
-    EffectsModule.forRoot([AppEffects, TodoEffects]),
-    StoreModule.forRoot(reducers, {
-      metaReducers, 
-      runtimeChecks: {
-        strictStateImmutability: true,
-        strictActionImmutability: true,
-      }
-    }),
-    !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorBasicAuthService, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

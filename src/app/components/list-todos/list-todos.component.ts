@@ -7,6 +7,7 @@ import {selectTodos} from 'src/app/store/selectors/todo.selector';
 import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
 import {Todo} from '../models/todo.model';
 import {AddTodoComponent} from '../add-todo/add-todo.component';
+import {SearchRequest} from '../../store/todos/todos.actions';
 
 
 @Component({
@@ -32,6 +33,7 @@ export class ListTodosComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.store.dispatch(new SearchRequest());
   }
 
   ngOnDestroy() {

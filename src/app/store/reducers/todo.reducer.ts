@@ -1,25 +1,14 @@
-import * as todoActions from './todos.actions';
-import {Todo} from 'src/app/components/models/todo.model';
+import * as todoActions from '../todos/todos.actions';
+import {TodoState} from '../state/app.state';
 
-export interface State {
-  userName?: string;
-}
 
-export const todoFeatureKey = 'todo';
-
-export interface State {
-  todos: Todo[],
-  todoById: Todo,
-  editResponse: Todo
-}
-
-export const initialState: State = {
+export const initialState: TodoState = {
   todos: [],
   todoById: null,
   editResponse: null
 };
 
-export function reducer(state = initialState, action: todoActions.TodoActions): State {
+export function reducer(state = initialState, action: todoActions.TodoActions): TodoState {
   switch (action.type) {
     case todoActions.SEARCH_RESPONSE: {
       return {

@@ -1,22 +1,19 @@
 import {
-  ActionReducer,
   ActionReducerMap,
-  createFeatureSelector,
-  createSelector,
   MetaReducer
 } from '@ngrx/store';
 import { environment } from '../../../environments/environment';
-import * as fromTodo from '../todos/todo.reducer';
+import * as fromState from '../state/app.state';
+import * as fromTodoReducer from '../reducers/todo.reducer';
 
 
 export interface State {
 
-  [fromTodo.todoFeatureKey]: fromTodo.State;
+  ['todo']: fromState.TodoState;
 }
 
 export const reducers: ActionReducerMap<State> = {
-
-  [fromTodo.todoFeatureKey]: fromTodo.reducer,
+  ['todo']: fromTodoReducer.reducer,
 };
 
 
