@@ -8,4 +8,10 @@ import { Component, ViewEncapsulation } from '@angular/core';
 })
 export class AppComponent {
   title = 'todo-frontend';
+  private _opened: boolean = false;
+
+  private _toggleSidebar() {
+    this._opened = !this._opened;
+  }
+
 }

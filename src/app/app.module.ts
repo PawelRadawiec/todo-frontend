@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { SidebarModule } from 'ng-sidebar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -43,6 +44,7 @@ import { HttpInterceptorBasicAuthService } from './shared/service/http/http-inte
     NgbModule,
     FormsModule,
     HttpClientModule,
+    SidebarModule.forRoot(),
     EffectsModule.forRoot([AppEffects, TodoEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreModule.forRoot(reducers, {

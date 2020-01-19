@@ -2,3 +2,15 @@ body {
     min-height: 100vh;
     background-image: linear-gradient(120deg, #16a085, #34495e);
 }
+
+.container {
+    display: grid;
+    grid-template-columns: 220px 1fr 220px;
+    grid-template-rows: auto 1fr auto;
+    grid-gap: 12px;
+    grid-template-areas:
+    "header header header"
+    "nav content side"
+    "footer footer footer";
+    height: 100vh;
+}
