@@ -1,43 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
-body {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-    background-color: #E4F0FF;
-}
-
 .container {
     display: grid;
-    grid-template-columns: 200px 1fr 200px;
+    grid-template-columns: 100px 1fr 100px;
     grid-template-rows: auto 1fr auto;
     grid-gap: 12px;
     grid-template-areas:
-    "header header header"
+    "menu menu menu"
     "nav content side"
     "footer footer footer";
     height: 100vh;
   }
 
-app-menu {
-    color: white;
-    font-size: 14px;
-    grid-area: header;
-    text-align: center;
-    background-color: #FA7D44;
+  app-menu {
+    grid-area: menu;
   }
-  
-  app-nav {
+    
+  app-sidebar {
     grid-area: nav;
     margin-left: 0.6rem;
-    background-color: #2A92BF;
   }
-  
+
+  app-login,
   app-list-todos {
     grid-area: content;
     padding: 25px;
   }
+  
   app-footer {
     grid-area: footer;
     background-color:#2BB961;
@@ -45,3 +35,20 @@ app-menu {
     text-align: center;
     padding: 25px 0;
   }
+
+
+@media (max-width: 991px) {
+  app-sidebar {
+    margin: 0;
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "menu"
+      "sidebar"
+      "content"
+      "footer";
+    grid-template-rows:auto minmax(60px, auto) 1fr minmax(70px, auto) auto;
+  }
+}

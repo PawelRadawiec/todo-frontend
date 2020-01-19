@@ -24,6 +24,7 @@ import { TodoEffects } from './store/todos/todo.effects';
 import { AddTodoComponent } from './components/add-todo/add-todo.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpInterceptorBasicAuthService } from './shared/service/http/http-interceptor-basic-auth.service';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { HttpInterceptorBasicAuthService } from './shared/service/http/http-inte
     MenuComponent,
     FooterComponent,
     LogoutComponent,
-    AddTodoComponent
+    AddTodoComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

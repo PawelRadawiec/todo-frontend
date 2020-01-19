@@ -1,17 +1,6 @@
-<app-menu></app-menu>
-<ng-sidebar-container style=" height: 10vh">
-    <div ng-sidebar-content>
-        <button (click)="_toggleSidebar()">Options</button>
-    </div>
-    <ng-sidebar [(opened)]="_opened" [closeOnClickOutside]="true">
-        <p>Sidebar contents</p>
-        <p>Sidebar contents</p>
-        <p>Sidebar contents</p>
-        <p>Sidebar contents</p>
-        <p>Sidebar contents</p>
-    </ng-sidebar>
-</ng-sidebar-container>
 <div class="container">
+    <app-menu></app-menu>
+    <app-sidebar></app-sidebar>
     <router-outlet></router-outlet>
+    <app-footer></app-footer>
 </div>
-<app-footer></app-footer>
