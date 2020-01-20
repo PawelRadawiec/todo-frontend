@@ -1,8 +1,12 @@
-<ng-sidebar-container style=" height: 100vh">
+<ng-sidebar-container>
     <div ng-sidebar-content>
         <button (click)="_toggleSidebar()">Options</button>
     </div>
-    <ng-sidebar [(opened)]="_opened" [closeOnClickOutside]="true">
+    <ng-sidebar  
+    [(opened)]="_opened" 
+    [closeOnClickOutside]="true" 
+    [animate]="true"
+    >
         <p>Sidebar contents</p>
         <p>Sidebar contents</p>
         <p>Sidebar contents</p>
