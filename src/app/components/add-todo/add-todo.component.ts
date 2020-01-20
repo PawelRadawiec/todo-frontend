@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild, ElementRef, OnDestroy} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {Todo} from '../models/todo.model';
+import {Todo, TodoFilter} from '../models/todo.model';
 import {select, Store} from '@ngrx/store';
 import {State} from '../../store/reducers';
 import {CreateTodoRequest, SearchRequest, TodoEditRequest, TodoGetByIdResponse} from '../../store/todos/todos.actions';
@@ -53,7 +53,7 @@ export class AddTodoComponent implements OnInit, OnDestroy {
 
   closeModal() {
     this.modalService.dismissAll();
-    this.store.dispatch(new SearchRequest());
+    this.store.dispatch(new SearchRequest(new TodoFilter()));
     this.store.dispatch(new TodoGetByIdResponse(new Todo()));
   }
 

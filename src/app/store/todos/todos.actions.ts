@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Todo } from 'src/app/components/models/todo.model';
+import { Todo, TodoFilter } from 'src/app/components/models/todo.model';
 
 export const SEARCH_REQUEST = '[Todo] SearchRequest';
 export const SEARCH_RESPONSE = '[Todo] SearchResponse';
@@ -14,6 +14,9 @@ export const DELETE_BY_ID = '[Todo] TodoDeleteById';
 
 export class SearchRequest implements Action {
   readonly type = SEARCH_REQUEST;
+  constructor(public filter: TodoFilter) {
+    
+  }
 }
 
 export class SearchResponse implements Action {

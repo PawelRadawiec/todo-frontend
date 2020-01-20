@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { switchMap, map, concatMap } from 'rxjs/operators';
 import * as todoActions from './todos.actions';
+import { TodoFilter } from 'src/app/components/models/todo.model';
 
 
 @Injectable()
@@ -19,8 +20,8 @@ export class TodoEffects {
   @Effect()
   searchRequest: Observable<Action> = this.actions$.pipe(
     ofType(todoActions.SEARCH_REQUEST),
-    switchMap(() => {
-      return this.todoService.getAllTodos()
+    switchMap((action: todoActions.SearchRequest) => {
+      return this.todoService.getAllTodos(action.filter)
         .pipe(
           map((todos) => {
             return new todoActions.SearchResponse(todos)
@@ -73,7 +74,7 @@ export class TodoEffects {
       return this.todoService.delete(action.todoId)
         .pipe(
           map(() => {
-            return new todoActions.SearchRequest();
+            return new todoActions.SearchRequest(new TodoFilter());
           })
         );
     })

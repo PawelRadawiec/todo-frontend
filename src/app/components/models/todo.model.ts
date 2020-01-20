@@ -12,3 +12,8 @@ export class Todo {
     Object.assign(this, props);
   }
 }
+
+export class TodoFilter {
+  sortBy: string;
+  direction: string;
+}

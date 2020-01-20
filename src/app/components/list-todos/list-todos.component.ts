@@ -5,7 +5,7 @@ import {Subscription} from 'rxjs';
 import {State} from '../../store/reducers';
 import {selectTodos} from 'src/app/store/selectors/todo.selector';
 import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
-import {Todo} from '../models/todo.model';
+import {Todo, TodoFilter} from '../models/todo.model';
 import {AddTodoComponent} from '../add-todo/add-todo.component';
 import {SearchRequest} from '../../store/todos/todos.actions';
 
@@ -33,14 +33,14 @@ export class ListTodosComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.store.dispatch(new SearchRequest());
+    this.store.dispatch(new SearchRequest(new TodoFilter));
   }
 
   ngOnDestroy() {
   }
 
   getAllTodos() {
-    this.store.dispatch(new todoActions.SearchRequest());
+    this.store.dispatch(new todoActions.SearchRequest(new TodoFilter));
   }
 
   getById(id: number) {

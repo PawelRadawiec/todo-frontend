@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Todo } from 'src/app/components/models/todo.model';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Todo, TodoFilter } from 'src/app/components/models/todo.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +14,12 @@ export class TodoService {
   ) {
   }
 
-  getAllTodos() {
-    return this.http.get<Todo[]>(`${this.baseUrl}/todo/todos`);
+  getAllTodos(filter: TodoFilter) {
+    const params = new HttpParams()
+    if(filter) {
+      params.set('sortBy', filter.sortBy);
+    }
+    return this.http.get<Todo[]>(`${this.baseUrl}/todo/todos`, {params});
   }
 
   getById(id: number) {
