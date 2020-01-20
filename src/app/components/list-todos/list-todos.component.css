@@ -1,17 +1,10 @@
-
 .card {
-    margin-top: 70px;
+    margin-top: 50px;
+    margin-left: 30px;
     border: 2px solid #353b48;
     background-color: #353b48;
     color: white;
     width: 350px;
-}
-
-.btn-table {
-    background: none;
-    border: 2px solid #353b48;
-    margin-bottom: 8px;
-    margin-left: 3px;
 }
 
 .header {
@@ -22,10 +15,5 @@
     background: none;
     border: 2px solid #94e4af;
     margin-top: 10px;
-    color: white;
-}
-
-.table {
-    border: none;
     color: white;
 }

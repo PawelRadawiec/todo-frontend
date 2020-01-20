@@ -21,6 +21,7 @@
   }
 
   app-login,
+  app-welcome,
   app-list-todos {
     grid-area: content;
     padding: 25px;
