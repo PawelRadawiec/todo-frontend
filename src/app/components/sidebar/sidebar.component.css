@@ -1,0 +1,10 @@
+::ng-deep aside {
+    padding: 2em 1em;
+    background-color: #343a40;
+    position: initial;
+    color: white;
+}
+
+.btn-space {
+    border-radius: 0 !important;
+}
