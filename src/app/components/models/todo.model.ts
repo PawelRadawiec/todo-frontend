@@ -16,4 +16,5 @@ export class Todo {
 export class TodoFilter {
   sortBy: string;
   direction: string;
+  description: string;
 }

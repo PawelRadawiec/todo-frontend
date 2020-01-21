@@ -11,7 +11,8 @@ import { TodoFilter } from '../models/todo.model';
 })
 export class SidebarComponent implements OnInit {
 
-  filter: TodoFilter = new TodoFilter;
+  description: string;
+  sortBy: string;
 
   constructor(
     private store: Store<State>
@@ -27,7 +28,10 @@ export class SidebarComponent implements OnInit {
   }
 
   search() {
-    this.store.dispatch(new SearchRequest(this.filter));
+    const filter = new TodoFilter();
+    filter.description = this.description;
+    filter.sortBy = this.sortBy;
+    this.store.dispatch(new SearchRequest(filter));
   }
 
 }

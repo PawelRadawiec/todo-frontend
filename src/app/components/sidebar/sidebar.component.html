@@ -13,7 +13,7 @@
         <div class="form-group">
             <label>Add todo</label>
             <label for="sel1">Sort todos by:</label>
-            <select class="form-control" id="sel1" [(ngModel)]="filter.sortBy">
+            <select class="form-control" id="sel1" [(ngModel)]="sortBy">
                 <option [ngValue]="target">target</option>
                 <option [ngValue]="description">description</option>
             </select>
@@ -24,6 +24,10 @@
                 <option>ascending</option>
                 <option>descending</option>
             </select>
+        </div>
+        <div class="form-group">
+            <label for="usr">Description:</label>
+            <input type="text" class="form-control" [(ngModel)]="description" id="usr">
         </div>
         <div class="form-group">
             <button type="button" class="btn btn-outline-light" (click)="search()">Search</button>

@@ -15,11 +15,11 @@ export class TodoService {
   }
 
   getAllTodos(filter: TodoFilter) {
-    const params = new HttpParams()
-    if(filter) {
-      params.set('sortBy', filter.sortBy);
+    let params = new HttpParams();
+    if (filter.description) {
+      params = params.append('description', filter.description);
     }
-    return this.http.get<Todo[]>(`${this.baseUrl}/todo/todos`, {params});
+    return this.http.get<Todo[]>(`${this.baseUrl}/todo/todos`, { params: params });
   }
 
   getById(id: number) {
