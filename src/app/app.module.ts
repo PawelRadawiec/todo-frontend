@@ -16,8 +16,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { AppEffects } from './store/effects/app.effects';
-import { reducers, metaReducers } from './store/reducers';
+import { reducers } from './store/state/app.state';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { TodoEffects } from './store/todos/todo.effects';
@@ -25,6 +24,7 @@ import { AddTodoComponent } from './components/add-todo/add-todo.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpInterceptorBasicAuthService } from './shared/service/http/http-interceptor-basic-auth.service';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { metaReducers } from './store/state/app.state'
 
 @NgModule({
   declarations: [
@@ -47,7 +47,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     FormsModule,
     HttpClientModule,
     SidebarModule.forRoot(),
-    EffectsModule.forRoot([AppEffects, TodoEffects]),
+    EffectsModule.forRoot([TodoEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreModule.forRoot(reducers, {
       metaReducers,
@@ -56,6 +56,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
         strictActionImmutability: true
       }
     }),
+    StoreDevtoolsModule.instrument()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorBasicAuthService, multi: true }

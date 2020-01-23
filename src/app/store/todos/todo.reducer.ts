@@ -1,4 +1,4 @@
-import * as todoActions from '../todos/todos.actions';
+import * as todoActions from './todos.actions';
 import {TodoState} from '../state/app.state';
 
 

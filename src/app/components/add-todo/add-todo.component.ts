@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild, ElementRef, OnDestroy} from '@angular/core
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Todo, TodoFilter} from '../models/todo.model';
 import {select, Store} from '@ngrx/store';
-import {State} from '../../store/reducers';
+import {State} from '../../store/state/app.state';
 import {CreateTodoRequest, SearchRequest, TodoEditRequest, TodoGetByIdResponse} from '../../store/todos/todos.actions';
 import {Subscription} from 'rxjs';
 import {selectGetByIdTodo} from '../../store/selectors/todo.selector';

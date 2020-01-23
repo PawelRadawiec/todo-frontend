@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { State } from 'src/app/store/reducers';
+import {State} from '../../store/state/app.state';
 import { SearchRequest } from 'src/app/store/todos/todos.actions';
 import { TodoFilter } from '../models/todo.model';
 

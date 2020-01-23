@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Store, select} from '@ngrx/store';
 import * as todoActions from '../../store/todos/todos.actions';
 import {Subscription} from 'rxjs';
-import {State} from '../../store/reducers';
+import {State} from '../../store/state/app.state';
 import {selectTodos} from 'src/app/store/selectors/todo.selector';
 import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
 import {Todo, TodoFilter} from '../models/todo.model';

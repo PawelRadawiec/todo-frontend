@@ -1,7 +1,7 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store';
 import {TodoState} from '../state/app.state';
 
-export const getTodoState = createFeatureSelector<TodoState>('todo');
+export const getTodoState = createFeatureSelector<TodoState>('todoState');
 
 export const selectTodos = createSelector(
   getTodoState,
