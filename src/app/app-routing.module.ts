@@ -7,12 +7,17 @@ import { ListTodosComponent } from './components/list-todos/list-todos.component
 import { LogoutComponent } from './components/logout/logout.component';
 import { RouteGuardService } from './shared/service/route-guard.service';
 import { AddTodoComponent } from './components/add-todo/add-todo.component';
+import { RegistrationComponent } from './components/registration/registration.component';
 
 
 const routes: Routes = [
   {
     path: '',
     component: LoginComponent
+  },
+  {
+    path: 'registration',
+    component: RegistrationComponent
   },
   {
     path: 'login',

@@ -24,7 +24,8 @@ import { AddTodoComponent } from './components/add-todo/add-todo.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpInterceptorBasicAuthService } from './shared/service/http/http-interceptor-basic-auth.service';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { metaReducers } from './store/state/app.state'
+import { metaReducers } from './store/state/app.state';
+import { RegistrationComponent } from './components/registration/registration.component'
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { metaReducers } from './store/state/app.state'
     FooterComponent,
     LogoutComponent,
     AddTodoComponent,
-    SidebarComponent
+    SidebarComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
