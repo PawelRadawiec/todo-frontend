@@ -26,6 +26,7 @@ import { HttpInterceptorBasicAuthService } from './shared/service/http/http-inte
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { metaReducers } from './store/state/app.state';
 import { RegistrationComponent } from './components/registration/registration.component'
+import { SystemUserEffects } from './store/system-user/system-user.effects';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,10 @@ import { RegistrationComponent } from './components/registration/registration.co
     FormsModule,
     HttpClientModule,
     SidebarModule.forRoot(),
-    EffectsModule.forRoot([TodoEffects]),
+    EffectsModule.forRoot([
+      TodoEffects,
+      SystemUserEffects
+    ]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreModule.forRoot(reducers, {
       metaReducers,

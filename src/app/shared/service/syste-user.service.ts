@@ -7,15 +7,16 @@ import { SystemUser } from 'src/app/components/models/system-user.model';
 })
 export class SysteUserService {
 
-  baseUrl = 'http://localhost:8080/user/';
+  baseUrl = 'http://localhost:8080/user';
 
-    constructor(
-        private http: HttpClient
-    ) {
-    }
+  constructor(
+    private http: HttpClient
+  ) {
+  }
 
-    save(request: SystemUser) {
-        return this.http.post<SystemUser>(`${this.baseUrl}/todo/create`, request);
-    }
+  save(request: SystemUser) {
+    console.log('service request: ', request)
+    return this.http.post<SystemUser>(`${this.baseUrl}/create`, request);
+  }
 
 }

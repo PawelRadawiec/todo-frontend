@@ -1,22 +1,30 @@
-<form class="col-lg-6 offset-lg-3">
+<form class="col-lg-6 offset-lg-3" (ngSubmit)="onSubmit(form)" #form="ngForm">
     <div class="form-row">
         <div class="col-md-9 mb-3">
-            <input type="text" class="form-control" id="validationDefault01" placeholder="First name">
+            <input type="text" class="form-control" placeholder="First name" name="firstName"
+                [(ngModel)]="request.firstName">
         </div>
     </div>
     <div class="form-row">
         <div class="col-md-9 mb-3">
-            <input type="text" class="form-control" id="validationDefault01" placeholder="Last name">
+            <input type="text" class="form-control" placeholder="Last name" name="lastName"
+                [(ngModel)]="request.lastName">
         </div>
     </div>
     <div class="form-row">
         <div class="col-md-9 mb-3">
-            <input type="text" class="form-control" id="validationDefault01" placeholder="Email">
+            <input type="text" class="form-control" placeholder="Email" name="email" [(ngModel)]="request.email">
         </div>
     </div>
     <div class="form-row">
         <div class="col-md-9 mb-3">
-            <input type="password" class="form-control" id="validationDefault01" placeholder="Password">
+            <input type="text" class="form-control" placeholder="Login" name="login" [(ngModel)]="request.login">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-9 mb-3">
+            <input type="password" class="form-control" placeholder="Password" name="password"
+                [(ngModel)]="request.password">
         </div>
     </div>
     <button type="button" class="btn btn-outline-light" type="submit">Submit form</button>

@@ -8,7 +8,6 @@ import { switchMap, map } from 'rxjs/operators';
 
 @Injectable()
 export class SystemUserEffects {
-    baseUrl = 'http://localhost:8080/user/';
 
     constructor(
         private actions$: Actions,
