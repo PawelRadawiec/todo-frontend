@@ -21,6 +21,7 @@ export interface TodoState {
 
 export interface SystemUserState {
   registered: SystemUser;
+  errors: any;
 }
 
 export const reducers: ActionReducerMap<State> = {

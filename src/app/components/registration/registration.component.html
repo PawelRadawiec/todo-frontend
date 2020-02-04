@@ -1,30 +1,27 @@
-<form class="col-lg-6 offset-lg-3" (ngSubmit)="onSubmit(form)" #form="ngForm">
-    <div class="form-row">
+<form class="col-lg-6 offset-lg-3" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
         <div class="col-md-9 mb-3">
-            <input type="text" class="form-control" placeholder="First name" name="firstName"
-                [(ngModel)]="request.firstName">
+            <input type="text" class="form-control" placeholder="First name" id="firstName" formControlName="firstName">
         </div>
     </div>
-    <div class="form-row">
+    <div class="form-group">
         <div class="col-md-9 mb-3">
-            <input type="text" class="form-control" placeholder="Last name" name="lastName"
-                [(ngModel)]="request.lastName">
+            <input type="text" class="form-control" placeholder="Last name" id="lastName" formControlName="lastName">
         </div>
     </div>
-    <div class="form-row">
+    <div class="form-group">
         <div class="col-md-9 mb-3">
-            <input type="text" class="form-control" placeholder="Email" name="email" [(ngModel)]="request.email">
+            <input type="text" class="form-control" placeholder="Email" id="email" formControlName="email">
         </div>
     </div>
-    <div class="form-row">
+    <div class="form-group">
         <div class="col-md-9 mb-3">
-            <input type="text" class="form-control" placeholder="Login" name="login" [(ngModel)]="request.login">
+            <input type="text" class="form-control" placeholder="Login" id="login" formControlName="login">
         </div>
     </div>
-    <div class="form-row">
+    <div class="form-group">
         <div class="col-md-9 mb-3">
-            <input type="password" class="form-control" placeholder="Password" name="password"
-                [(ngModel)]="request.password">
+            <input type="password" class="form-control" placeholder="Password" id="password" formControlName="password">
         </div>
     </div>
     <button type="button" class="btn btn-outline-light" type="submit">Submit form</button>

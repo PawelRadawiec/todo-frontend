@@ -15,7 +15,6 @@ export class SysteUserService {
   }
 
   save(request: SystemUser) {
-    console.log('service request: ', request)
     return this.http.post<SystemUser>(`${this.baseUrl}/create`, request);
   }
 
