@@ -33,7 +33,6 @@ import { SystemUserEffects } from './store/system-user/system-user.effects';
     AppComponent,
     WelcomeComponent,
     LoginComponent,
-    ErrorComponent,
     ListTodosComponent,
     YesNoPipe,
     MenuComponent,

@@ -4,10 +4,7 @@ import {Store} from '@ngrx/store';
 import {State} from 'src/app/store/state/app.state';
 import {RegistrationRequest} from 'src/app/store/system-user/system-user.actions';
 import {FormGroup, FormControl} from '@angular/forms';
-import {Subscription} from 'rxjs';
-import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
-import {HttpErrorResponse} from '@angular/common/http';
-import {selectError} from '../../store/selectors/error.selector';
+import {ErrorComponent} from '../error/error.component';
 
 
 @Component({
@@ -15,74 +12,35 @@ import {selectError} from '../../store/selectors/error.selector';
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
-@AutoUnsubscribe()
-export class RegistrationComponent implements OnInit, OnDestroy {
+export class RegistrationComponent extends ErrorComponent implements OnInit, OnDestroy {
   request: SystemUser;
-  signupForm: FormGroup;
-  errors: HttpErrorResponse;
-  protected subscriptions: Subscription[] = [];
+  signUpForm: FormGroup;
 
-  constructor(private store: Store<State>) {
-    this.subscriptions.push(
-      store.select(selectError).subscribe(errors => {
-        if (errors) {
-          this.errors = errors;
-          this.initErrorMessages();
-        }
-      })
-    );
+  constructor(protected store: Store<State>) {
+    super(store);
   }
 
   ngOnInit() {
     this.request = new SystemUser();
-    this.initSignupForm();
+    this.initSignUpForm();
   }
 
   ngOnDestroy() {
-
   }
 
   onSubmit() {
-    this.store.dispatch(new RegistrationRequest(new SystemUser(this.signupForm.value)));
+    this.store.dispatch(new RegistrationRequest(new SystemUser(this.signUpForm.value)));
   }
 
-  initSignupForm() {
-    this.signupForm = new FormGroup({
+  initSignUpForm() {
+    this.signUpForm = new FormGroup({
       'firstName': new FormControl(null),
       'lastName': new FormControl(null),
       'email': new FormControl(null),
       'login': new FormControl(null),
       'password': new FormControl(null),
     });
-  }
-
-  initErrorMessages() {
-    const validationErrors = this.errors.error;
-    Object.entries(validationErrors).forEach(
-      ([key, value]) => {
-        const formControl = this.signupForm.get(key);
-        if (formControl) {
-          formControl.setErrors({
-            serverError: value
-          });
-        }
-      });
-  }
-
-  containError(field: string) {
-    const formControl = this.signupForm.get(field);
-    return (
-      formControl
-      && formControl.errors
-      && ![null, undefined].includes(formControl.errors.serverError)
-    );
-  }
-
-  errorMessage(field: string) {
-    const formControl = this.signupForm.get(field);
-    if (this.containError(field)) {
-      return formControl.errors.serverError;
-    }
+    this.form = this.signUpForm;
   }
 
 
