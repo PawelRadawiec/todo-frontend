@@ -6,8 +6,8 @@ import {RegistrationRequest} from 'src/app/store/system-user/system-user.actions
 import {FormGroup, FormControl} from '@angular/forms';
 import {Subscription} from 'rxjs';
 import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
-import {selectUserErrors} from '../../store/selectors/system-user.selector';
 import {HttpErrorResponse} from '@angular/common/http';
+import {selectError} from '../../store/selectors/error.selector';
 
 
 @Component({
@@ -24,7 +24,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
 
   constructor(private store: Store<State>) {
     this.subscriptions.push(
-      store.select(selectUserErrors).subscribe(errors => {
+      store.select(selectError).subscribe(errors => {
         if (errors) {
           this.errors = errors;
           this.initErrorMessages();
@@ -66,8 +66,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
             serverError: value
           });
         }
-      }
-    );
+      });
   }
 
   containError(field: string) {
