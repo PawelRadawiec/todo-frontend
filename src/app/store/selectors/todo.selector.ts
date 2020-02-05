@@ -11,4 +11,4 @@ export const selectTodos = createSelector(
 export const selectGetByIdTodo = createSelector(
   getTodoState,
   (state: TodoState) => state.todoById
-)
+);
