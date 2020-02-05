@@ -36,6 +36,9 @@ export class ErrorComponent implements OnInit, OnDestroy {
 
   initErrorMessages() {
     const validationErrors = this.errorResponse.error;
+    if (!validationErrors || !this.form) {
+      return;
+    }
     Object.entries(validationErrors).forEach(
       ([key, value]) => {
         const formControl = this.form.get(key);
