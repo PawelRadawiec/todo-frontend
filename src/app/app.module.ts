@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { LoginComponent } from './components/login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorComponent } from './components/error/error.component';
 import { ListTodosComponent } from './components/list-todos/list-todos.component';
 import { YesNoPipe } from './shared/pipes/yes-no.pipe';
@@ -24,30 +24,36 @@ import { AddTodoComponent } from './components/add-todo/add-todo.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpInterceptorBasicAuthService } from './shared/service/http/http-interceptor-basic-auth.service';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { metaReducers } from './store/state/app.state'
+import { metaReducers } from './store/state/app.state';
+import { RegistrationComponent } from './components/registration/registration.component'
+import { SystemUserEffects } from './store/system-user/system-user.effects';
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeComponent,
     LoginComponent,
-    ErrorComponent,
     ListTodosComponent,
     YesNoPipe,
     MenuComponent,
     FooterComponent,
     LogoutComponent,
     AddTodoComponent,
-    SidebarComponent
+    SidebarComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     SidebarModule.forRoot(),
-    EffectsModule.forRoot([TodoEffects]),
+    EffectsModule.forRoot([
+      TodoEffects,
+      SystemUserEffects
+    ]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreModule.forRoot(reducers, {
       metaReducers,

@@ -3,25 +3,37 @@ import {
   ActionReducerMap, MetaReducer
 } from '@ngrx/store';
 import * as fromTodoReducer from '../todos/todo.reducer';
-import { environment } from '../../../environments/environment';
+import * as fromSystemUserReducer from '../system-user/system-user.reducer';
+import * as fromErrorReducer from '../errors/error.reducer';
+import {environment} from '../../../environments/environment';
+import {SystemUser} from 'src/app/components/models/system-user.model';
+import {HttpErrorResponse} from '@angular/common/http';
 
 export interface State {
   userName?: string;
   todoState: TodoState;
+  systemUserState: SystemUserState;
+  errorState: ErrorsState;
 }
 
 export interface TodoState {
-  todos: Todo[],
-  todoById: Todo,
-  editResponse: Todo
+  todos: Todo[];
+  todoById: Todo;
+  editResponse: Todo;
 }
 
-// export interface State {
-//   todoState: TodoState;
-// }
+export interface SystemUserState {
+  registered: SystemUser;
+}
+
+export interface ErrorsState {
+  error: HttpErrorResponse;
+}
 
 export const reducers: ActionReducerMap<State> = {
-  todoState: fromTodoReducer.reducer
+  todoState: fromTodoReducer.reducer,
+  systemUserState: fromSystemUserReducer.reducer,
+  errorState: fromErrorReducer.reducer
 };
 
 
