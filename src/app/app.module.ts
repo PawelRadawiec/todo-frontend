@@ -27,6 +27,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { metaReducers } from './store/state/app.state';
 import { RegistrationComponent } from './components/registration/registration.component'
 import { SystemUserEffects } from './store/system-user/system-user.effects';
+import { ConfirmRegistrationComponent } from './components/confirm-registration/confirm-registration.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { SystemUserEffects } from './store/system-user/system-user.effects';
     LogoutComponent,
     AddTodoComponent,
     SidebarComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    ConfirmRegistrationComponent
   ],
   imports: [
     BrowserModule,

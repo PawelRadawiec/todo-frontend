@@ -1,10 +1,11 @@
-import {Injectable} from '@angular/core';
-import {Actions, ofType, Effect} from '@ngrx/effects';
-import {SysteUserService} from 'src/app/shared/service/syste-user.service';
+import { Injectable } from '@angular/core';
+import { Actions, ofType, Effect } from '@ngrx/effects';
+import { SysteUserService } from 'src/app/shared/service/syste-user.service';
+import { switchMap, map, catchError, tap } from 'rxjs/operators';
+import { of } from 'rxjs';
+
 import * as systemUserActions from './system-user.actions';
 import * as errorActions from '../errors/error.actions';
-import {switchMap, map, catchError} from 'rxjs/operators';
-import {of} from 'rxjs';
 
 
 @Injectable()
