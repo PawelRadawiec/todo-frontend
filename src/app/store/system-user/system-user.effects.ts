@@ -33,5 +33,22 @@ export class SystemUserEffects {
     })
   );
 
+  @Effect()
+  activationRequest = this.actions$.pipe(
+    ofType(systemUserActions.ACTIVATION_REQUEST),
+    switchMap((action: systemUserActions.ActivtionRequest) => {
+      console.log('effect code: ', action.activationCode);
+      return this.systemUserService.activation(action.activationCode)
+        .pipe(
+          map((active) => {
+            return new systemUserActions.ActivationResponse(active);
+          }),
+          catchError((errors) => {
+            return of(new errorActions.ErrorResponse(errors));
+          })
+        );
+    })
+  );
+
 
 }

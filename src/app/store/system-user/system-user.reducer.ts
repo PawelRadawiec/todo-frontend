@@ -2,7 +2,8 @@ import { SystemUserState } from '../state/app.state';
 import * as systemUserActions from './system-user.actions'
 
 export const initialState: SystemUserState = {
-    registered: null
+    registered: null,
+    accountActive: null
 };
 
 export function reducer(state = initialState, action: systemUserActions.SystemUserActions) {
@@ -11,6 +12,13 @@ export function reducer(state = initialState, action: systemUserActions.SystemUs
             return {
                 ...state,
                 registered: action.response
+            };
+        }
+
+        case systemUserActions.ACTIVATION_RESPONSE: {
+            return {
+                ...state,
+                accountActive: action.response
             };
         }
     }

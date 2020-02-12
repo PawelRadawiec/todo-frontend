@@ -22,6 +22,7 @@
 
   app-login,
   app-registration,
+  app-activation,
   app-welcome,
   app-list-todos {
     grid-area: content;

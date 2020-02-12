@@ -18,4 +18,11 @@ export class SysteUserService {
     return this.http.post<SystemUser>(`${this.baseUrl}/create`, request);
   }
 
+  activation(activationCode: string) {
+    const activation = {
+      activationCode: activationCode
+    }
+    return this.http.post<any>(`${this.baseUrl}/activation`, activation);
+  }
+
 }

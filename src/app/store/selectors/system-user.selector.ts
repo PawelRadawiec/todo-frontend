@@ -8,3 +8,8 @@ export const selectRegisteredUser = createSelector(
     getSystemUserState,
     (state: SystemUserState) => state.registered
 );
+
+export const selectActiveAccount = createSelector(
+    getSystemUserState,
+    (state: SystemUserState) => state.accountActive
+);

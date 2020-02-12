@@ -8,6 +8,8 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { RouteGuardService } from './shared/service/route-guard.service';
 import { AddTodoComponent } from './components/add-todo/add-todo.component';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { ActivationComponent } from './components/activation/activation.component';
+import { ActivationResolver } from './shared/resolvers/activation.resolver';
 
 
 const routes: Routes = [
@@ -44,6 +46,13 @@ const routes: Routes = [
     canActivate: [RouteGuardService]
   },
   {
+    path: 'activation/:activationCode',
+    component: ActivationComponent,
+    resolve: {
+      activationResolver: ActivationResolver
+    }
+  },
+  {
     path: '**',
     component: ErrorComponent
   }
@@ -51,6 +60,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [ActivationResolver]
 })
 export class AppRoutingModule { }

@@ -28,6 +28,7 @@ import { metaReducers } from './store/state/app.state';
 import { RegistrationComponent } from './components/registration/registration.component'
 import { SystemUserEffects } from './store/system-user/system-user.effects';
 import { ConfirmRegistrationComponent } from './components/confirm-registration/confirm-registration.component';
+import { ActivationComponent } from './components/activation/activation.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ConfirmRegistrationComponent } from './components/confirm-registration/
     AddTodoComponent,
     SidebarComponent,
     RegistrationComponent,
-    ConfirmRegistrationComponent
+    ConfirmRegistrationComponent,
+    ActivationComponent
   ],
   imports: [
     BrowserModule,

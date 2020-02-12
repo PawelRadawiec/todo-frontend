@@ -24,6 +24,7 @@ export interface TodoState {
 
 export interface SystemUserState {
   registered: SystemUser;
+  accountActive: boolean;
 }
 
 export interface ErrorsState {
