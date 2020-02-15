@@ -20,6 +20,7 @@ export interface TodoState {
   todos: Todo[];
   todoById: Todo;
   editResponse: Todo;
+  createResponse: Todo;
 }
 
 export interface SystemUserState {

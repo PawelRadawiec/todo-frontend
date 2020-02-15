@@ -6,21 +6,28 @@
     </button>
   </div>
   <div class="modal-body">
-    <form>
+    <form [formGroup]="todoForm" (ngSubmit)="onSubmit ()">
       <div class="form-group">
-        <label>Description</label>
-        <div class="input-group">
-          <input
-            [(ngModel)]="todo.description"
-            name="description"
-            class="form-control"
-            type="text"
-          >
+        <input type="text" class="form-control" placeholder="Title" id="title" formControlName="title">
+        <div class="col-sm-3" class="text-danger" *ngIf="containError('title')">
+          {{ errorMessage('title') }}
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="description" id="description" formControlName="description">
+        <div class="col-sm-3" class="text-danger" *ngIf="containError('description')">
+          {{ errorMessage('description') }}
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Status" id="status" formControlName="status">
+        <div class="col-sm-3" class="text-danger" *ngIf="containError('status')">
+          {{ errorMessage('status') }}
         </div>
       </div>
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="saveTodo()">{{getButtonName()}}</button>
+    <button class="btn btn-outline-light" type="text" (click)="onSubmit()">Create</button>
   </div>
 </ng-template>

@@ -12,3 +12,8 @@ export const selectGetByIdTodo = createSelector(
   getTodoState,
   (state: TodoState) => state.todoById
 );
+
+export const selectCreateResponse = createSelector(
+  getTodoState,
+  (state: TodoState) => state.createResponse
+);

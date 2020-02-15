@@ -1,11 +1,12 @@
 import * as todoActions from './todos.actions';
-import {TodoState} from '../state/app.state';
+import { TodoState } from '../state/app.state';
 
 
 export const initialState: TodoState = {
   todos: [],
   todoById: null,
-  editResponse: null
+  editResponse: null,
+  createResponse: null
 };
 
 export function reducer(state = initialState, action: todoActions.TodoActions): TodoState {
@@ -26,6 +27,12 @@ export function reducer(state = initialState, action: todoActions.TodoActions): 
       return {
         ...state,
         editResponse: action.response
+      };
+    }
+    case todoActions.CREATE_RESPONSE: {
+      return {
+        ...state,
+        createResponse: action.response
       };
     }
 

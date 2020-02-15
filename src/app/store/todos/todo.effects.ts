@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { TodoService } from 'src/app/shared/service/todo/todo.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Action } from '@ngrx/store';
-import { switchMap, map, concatMap } from 'rxjs/operators';
-import * as todoActions from './todos.actions';
+import { switchMap, map, concatMap, catchError } from 'rxjs/operators';
 import { TodoFilter } from 'src/app/components/models/todo.model';
 
+import * as todoActions from './todos.actions';
+import * as errorActions from '../errors/error.actions';
 
 @Injectable()
 export class TodoEffects {
@@ -49,7 +50,12 @@ export class TodoEffects {
     concatMap((action: todoActions.CreateTodoRequest) =>
       this.todoService.saveTodo(action.request)
         .pipe(
-          concatMap((todo) => ([]))
+          concatMap((todo) => ([
+              new todoActions.CreateTodoResponse(todo)
+          ])),
+          catchError((errors) => {
+            return of(new errorActions.ErrorResponse(errors));
+          })
         )
     )
   );
