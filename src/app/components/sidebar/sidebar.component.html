@@ -11,7 +11,9 @@
             </button>
         </div>
         <div class="form-group">
-            <label>Add todo</label>
+            <div class="form-group">
+                <button type="button" class="btn btn-outline-light" (click)="openTodoModal()">Add todo</button>
+            </div>
             <label for="sel1">Sort todos by:</label>
             <select class="form-control" id="sel1" [(ngModel)]="sortBy">
                 <option [ngValue]="target">target</option>
@@ -34,3 +36,4 @@
         </div>
     </ng-sidebar>
 </ng-sidebar-container>
+<app-add-todo></app-add-todo>

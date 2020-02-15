@@ -37,7 +37,6 @@ export class SystemUserEffects {
   activationRequest = this.actions$.pipe(
     ofType(systemUserActions.ACTIVATION_REQUEST),
     switchMap((action: systemUserActions.ActivtionRequest) => {
-      console.log('effect code: ', action.activationCode);
       return this.systemUserService.activation(action.activationCode)
         .pipe(
           map((active) => {

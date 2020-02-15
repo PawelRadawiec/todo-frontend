@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {State} from '../../store/state/app.state';
 import { SearchRequest } from 'src/app/store/todos/todos.actions';
 import { TodoFilter } from '../models/todo.model';
+import { AddTodoComponent } from '../add-todo/add-todo.component';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,6 +14,8 @@ export class SidebarComponent implements OnInit {
 
   description: string;
   sortBy: string;
+  @ViewChild(AddTodoComponent, {static: false}) child: AddTodoComponent;
+
 
   constructor(
     private store: Store<State>
@@ -32,6 +35,11 @@ export class SidebarComponent implements OnInit {
     filter.description = this.description;
     filter.sortBy = this.sortBy;
     this.store.dispatch(new SearchRequest(filter));
+  }
+
+  openTodoModal() {
+    console.log('CHILD: ', this.child);
+    this.child.open();
   }
 
 }
