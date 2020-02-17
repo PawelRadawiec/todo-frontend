@@ -8,6 +8,7 @@ import * as fromErrorReducer from '../errors/error.reducer';
 import {environment} from '../../../environments/environment';
 import {SystemUser} from 'src/app/components/models/system-user.model';
 import {HttpErrorResponse} from '@angular/common/http';
+import { Project } from 'src/app/components/models/project.model';
 
 export interface State {
   userName?: string;
@@ -30,6 +31,11 @@ export interface SystemUserState {
 
 export interface ErrorsState {
   error: HttpErrorResponse;
+}
+
+export interface ProjectState {
+  projects: Project[];
+  project: Project;
 }
 
 export const reducers: ActionReducerMap<State> = {
