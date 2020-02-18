@@ -1,0 +1,25 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Close</h4>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    Project
+    <form>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Title" id="title">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="description" id="description">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Status" id="status">
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-outline-light" type="text">Create</button>
+  </div>
+</ng-template>

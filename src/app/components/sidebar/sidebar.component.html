@@ -1,39 +1,43 @@
 <ng-sidebar-container>
-    <div ng-sidebar-content>
-        <button type="button" (click)="_toggleSidebar()" class="btn btn-dark btn-space">
-            <i class="fa fa-pencil fa-fw"></i>
-        </button>
+  <div ng-sidebar-content>
+    <button type="button" (click)="_toggleSidebar()" class="btn btn-dark btn-space">
+      <i class="fa fa-pencil fa-fw"></i>
+    </button>
+  </div>
+  <ng-sidebar [(opened)]="_opened" [animate]="true">
+    <div class="form-group">
+      <button type="button" class="close" aria-label="Close" (click)="_toggleSidebar()()">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
-    <ng-sidebar [(opened)]="_opened" [animate]="true">
-        <div class="form-group">
-            <button type="button" class="close" aria-label="Close" (click)="_toggleSidebar()()">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="form-group">
-            <div class="form-group">
-                <button type="button" class="btn btn-outline-light" (click)="openTodoModal()">Add todo</button>
-            </div>
-            <label for="sel1">Sort todos by:</label>
-            <select class="form-control" id="sel1" [(ngModel)]="sortBy">
-                <option [ngValue]="target">target</option>
-                <option [ngValue]="description">description</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="sel1">Order:</label>
-            <select class="form-control">
-                <option>ascending</option>
-                <option>descending</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="usr">Description:</label>
-            <input type="text" class="form-control" [(ngModel)]="description" id="usr">
-        </div>
-        <div class="form-group">
-            <button type="button" class="btn btn-outline-light" (click)="search()">Search</button>
-        </div>
-    </ng-sidebar>
+    <div class="form-group">
+      <div class="form-group">
+        <button type="button" class="btn btn-outline-light" (click)="openTodoModal()">Add todo</button>
+      </div>
+      <div class="form-group">
+        <button type="button" class="btn btn-outline-light" (click)="openProjectModal()">Add project</button>
+      </div>
+      <label for="sel1">Sort todos by:</label>
+      <select class="form-control" id="sel1" [(ngModel)]="sortBy">
+        <option [ngValue]="target">target</option>
+        <option [ngValue]="description">description</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="sel1">Order:</label>
+      <select class="form-control">
+        <option>ascending</option>
+        <option>descending</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="usr">Description:</label>
+      <input type="text" class="form-control" [(ngModel)]="description" id="usr">
+    </div>
+    <div class="form-group">
+      <button type="button" class="btn btn-outline-light" (click)="search()">Search</button>
+    </div>
+  </ng-sidebar>
 </ng-sidebar-container>
 <app-add-todo></app-add-todo>
+<app-add-project></app-add-project>

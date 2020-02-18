@@ -29,6 +29,7 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { SystemUserEffects } from './store/system-user/system-user.effects';
 import { ConfirmRegistrationComponent } from './components/confirm-registration/confirm-registration.component';
 import { ActivationComponent } from './components/activation/activation.component';
+import { AddProjectComponent } from './components/add-project/add-project.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ActivationComponent } from './components/activation/activation.componen
     SidebarComponent,
     RegistrationComponent,
     ConfirmRegistrationComponent,
-    ActivationComponent
+    ActivationComponent,
+    AddProjectComponent
   ],
   imports: [
     BrowserModule,

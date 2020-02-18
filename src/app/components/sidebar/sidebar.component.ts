@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Store } from '@ngrx/store';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {Store} from '@ngrx/store';
 import {State} from '../../store/state/app.state';
-import { SearchRequest } from 'src/app/store/todos/todos.actions';
-import { TodoFilter } from '../models/todo.model';
-import { AddTodoComponent } from '../add-todo/add-todo.component';
+import {SearchRequest} from 'src/app/store/todos/todos.actions';
+import {TodoFilter} from '../models/todo.model';
+import {AddTodoComponent} from '../add-todo/add-todo.component';
+import {AddProjectComponent} from '../add-project/add-project.component';
 
 @Component({
   selector: 'app-sidebar',
@@ -14,12 +15,14 @@ export class SidebarComponent implements OnInit {
 
   description: string;
   sortBy: string;
-  @ViewChild(AddTodoComponent, {static: false}) child: AddTodoComponent;
+  @ViewChild(AddTodoComponent, {static: false}) childTodo: AddTodoComponent;
+  @ViewChild(AddProjectComponent, {static: false}) childProject: AddProjectComponent;
 
 
   constructor(
     private store: Store<State>
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
   }
@@ -38,8 +41,11 @@ export class SidebarComponent implements OnInit {
   }
 
   openTodoModal() {
-    console.log('CHILD: ', this.child);
-    this.child.open();
+    this.childTodo.open();
+  }
+
+  openProjectModal() {
+    this.childProject.open();
   }
 
 }
