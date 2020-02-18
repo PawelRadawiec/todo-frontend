@@ -30,6 +30,7 @@ import { SystemUserEffects } from './store/system-user/system-user.effects';
 import { ConfirmRegistrationComponent } from './components/confirm-registration/confirm-registration.component';
 import { ActivationComponent } from './components/activation/activation.component';
 import { AddProjectComponent } from './components/add-project/add-project.component';
+import { ProjectEffects } from './store/project/project.effects';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { AddProjectComponent } from './components/add-project/add-project.compon
     SidebarModule.forRoot(),
     EffectsModule.forRoot([
       TodoEffects,
-      SystemUserEffects
+      SystemUserEffects,
+      ProjectEffects
     ]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreModule.forRoot(reducers, {

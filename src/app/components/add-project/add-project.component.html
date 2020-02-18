@@ -6,20 +6,22 @@
     </button>
   </div>
   <div class="modal-body">
-    Project
-    <form>
+    <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="Title" id="title">
+        <input type="text" class="form-control" placeholder="Title" id="title" formControlName="title">
+        <div class="col-sm-3" class="text-danger" *ngIf="containError('title')">
+          {{ errorMessage('title') }}
+        </div>
       </div>
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="description" id="description">
-      </div>
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="Status" id="status">
+        <input type="text" class="form-control" placeholder="description" id="description" formControlName="description">
+        <div class="col-sm-3" class="text-danger" *ngIf="containError('description')">
+          {{ errorMessage('description') }}
+        </div>
       </div>
     </form>
   </div>
   <div class="modal-footer">
-    <button class="btn btn-outline-light" type="text">Create</button>
+    <button class="btn btn-outline-light" type="text" (click)="onSubmit()">Create</button>
   </div>
 </ng-template>

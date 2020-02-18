@@ -9,7 +9,7 @@ import {of} from 'rxjs';
 
 @Injectable()
 export class ProjectEffects {
-
+  
   constructor(
     private actions$: Actions,
     private projectService: ProjectService
