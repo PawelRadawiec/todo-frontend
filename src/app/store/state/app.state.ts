@@ -5,15 +5,17 @@ import {
 import * as fromTodoReducer from '../todos/todo.reducer';
 import * as fromSystemUserReducer from '../system-user/system-user.reducer';
 import * as fromErrorReducer from '../errors/error.reducer';
+import * as fromProjectReducer from '../project/project.reducer';
 import {environment} from '../../../environments/environment';
 import {SystemUser} from 'src/app/components/models/system-user.model';
 import {HttpErrorResponse} from '@angular/common/http';
-import { Project } from 'src/app/components/models/project.model';
+import {Project} from 'src/app/components/models/project.model';
 
 export interface State {
   userName?: string;
   todoState: TodoState;
   systemUserState: SystemUserState;
+  projectState: ProjectState;
   errorState: ErrorsState;
 }
 
@@ -41,6 +43,7 @@ export interface ProjectState {
 export const reducers: ActionReducerMap<State> = {
   todoState: fromTodoReducer.reducer,
   systemUserState: fromSystemUserReducer.reducer,
+  projectState: fromProjectReducer.reducer,
   errorState: fromErrorReducer.reducer
 };
 
