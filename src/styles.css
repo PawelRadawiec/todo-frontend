@@ -24,6 +24,7 @@
   app-registration,
   app-activation,
   app-welcome,
+  app-project-list,
   app-list-todos {
     grid-area: content;
     padding: 25px;
