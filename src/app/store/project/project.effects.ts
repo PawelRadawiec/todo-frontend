@@ -6,6 +6,7 @@ import {catchError, map, switchMap} from 'rxjs/internal/operators';
 import * as projectActions from '../project/project.actions';
 import * as errorActions from '../errors/error.actions';
 import {of} from 'rxjs';
+import { ProjectFilter } from 'src/app/components/models/project.model';
 
 @Injectable()
 export class ProjectEffects {
@@ -31,6 +32,19 @@ export class ProjectEffects {
         );
     })
   );
+
+  @Effect()
+  searchRequest = this.actions$.pipe(
+      ofType(projectActions.SEARCH_REQUEST),
+      switchMap((action: projectActions.ProjectSearchRequest) => {
+        return this.projectService.search(new ProjectFilter())
+        .pipe(
+          map((response) => {
+            return new projectActions.ProjectSearchResponse(response)
+          })
+        );
+      })
+  )
 
 
 }
