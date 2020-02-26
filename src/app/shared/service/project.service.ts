@@ -18,7 +18,7 @@ export class ProjectService {
   }
 
   search(filter: ProjectFilter) {
-    return this.http.get<Project[]>(`${this.baseUrl}`, {params: this.createHttpParams(filter)})
+    return this.http.get<Project[]>(`${this.baseUrl}/search`, {params: this.createHttpParams(filter)})
   }
 
   private createHttpParams(filter: ProjectFilter) {

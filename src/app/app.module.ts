@@ -31,6 +31,7 @@ import { ConfirmRegistrationComponent } from './components/confirm-registration/
 import { ActivationComponent } from './components/activation/activation.component';
 import { AddProjectComponent } from './components/add-project/add-project.component';
 import { ProjectEffects } from './store/project/project.effects';
+import { ProjectListComponent } from './components/project/project-list/project-list.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { ProjectEffects } from './store/project/project.effects';
     RegistrationComponent,
     ConfirmRegistrationComponent,
     ActivationComponent,
-    AddProjectComponent
+    AddProjectComponent,
+    ProjectListComponent
   ],
   imports: [
     BrowserModule,

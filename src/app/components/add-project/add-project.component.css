@@ -1,0 +1,28 @@
+
+.template {
+    background-color:#353b48;
+    position: fixed;
+}
+.modal-header {
+    background-color:#353b48;
+    border: 1px solid #4f5b74;
+    color: white;
+}
+
+.modal-body {
+    background-color:#353b48;
+    border: 1px solid #4f5b74;
+    color: white;
+}
+
+.modal-footer {
+    background-color:#353b48;
+    border: 1px solid #4f5b74;
+    color: white;
+}
+
+.form-control {
+    background-color:#353b48;
+    border: 1px solid #4f5b74;
+    color: white;
+}
