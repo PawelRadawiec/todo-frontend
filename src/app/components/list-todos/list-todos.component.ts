@@ -15,7 +15,7 @@ import {SearchRequest} from '../../store/todos/todos.actions';
   templateUrl: './list-todos.component.html',
   styleUrls: ['./list-todos.component.css']
 })
-@AutoUnsubscribe()
+@AutoUnsubscribe({arrayName: 'subscriptions'})
 export class ListTodosComponent implements OnInit, OnDestroy {
   todos: Todo[] = [];
   private subscriptions: Subscription[] = [];
