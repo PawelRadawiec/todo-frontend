@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BasicAuthenticationService } from 'src/app/shared/service/basic-authentication.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -8,32 +9,42 @@ import { BasicAuthenticationService } from 'src/app/shared/service/basic-authent
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  login = 'test';
-  password = '';
-  errorMessage = 'Invalid credentials';
-  invalidLogin = false;
+  private errorMessage = 'Invalid credentials';
+  private invalidLogin = false;
+  private loginForm: FormGroup;
 
   constructor(
     private router: Router,
-    private authService: BasicAuthenticationService
+    private authService: BasicAuthenticationService,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
+    this.initLoginForm();
   }
 
-  handleJwtLogin() {
-    this.authService.executeJwtAuthService(this.login, this.password)
-      .subscribe(
-        data => {
-          this.router.navigate(['welcome', this.login])
-          this.invalidLogin = false
-        },
+  onSubmit() {
+    const formValue = {
+      login: this.loginForm.value.login,
+      password: this.loginForm.value.password
+    };
+    this.authService.executeJwtAuthService(formValue.login, formValue.password)
+      .subscribe(() => {
+        this.router.navigate(['welcome', formValue.login])
+        this.invalidLogin = false
+      },
         error => {
           console.log(error),
             this.invalidLogin = true
         }
       )
+  }
+
+  initLoginForm() {
+    this.loginForm = this.formBuilder.group({
+      login: [],
+      password: []
+    });
   }
 
 }

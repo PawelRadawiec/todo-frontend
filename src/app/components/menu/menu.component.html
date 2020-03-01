@@ -1,7 +1,7 @@
 <header>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div>
-            <a href="" class="navbar-brand"> <i class="fa fa-check-circle-o" aria-hidden="true"></i> Todo</a>
+            <a href="" class="navbar-brand"> <i class="fa fa-check-circle-o" aria-hidden="true"></i> Organizer</a>
         </div>
         <ul class="navbar-nav">
             <li>
@@ -13,10 +13,10 @@
         </ul>
         <ul class="navbar-nav navbar-collapse justify-content-end">
             <li>
-                <a *ngIf="!isUserLoggedIn()" routerLink="/registration" class="nav-link">Sign in</a>
+                <a *ngIf="!isUserLoggedIn()" routerLink="/registration" class="nav-link">Sign up</a>
             </li>
             <li>
-                <a *ngIf="!isUserLoggedIn()" routerLink="/login" class="nav-link">Login</a>
+                <a *ngIf="!isUserLoggedIn()" routerLink="/login" class="nav-link">Sign in</a>
             </li>
             <li>
                 <a *ngIf="isUserLoggedIn()" routerLink="/logout" class="nav-link">Logout</a>
