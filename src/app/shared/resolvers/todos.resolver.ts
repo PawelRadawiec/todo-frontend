@@ -4,35 +4,30 @@ import { State } from 'src/app/store/state/app.state';
 import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import * as projectActions from '../../store/project/project.actions';
-import { take, tap, switchMap } from 'rxjs/operators';
-import { selectProject } from 'src/app/store/selectors/project.selector';
+import { ofType, Actions } from '@ngrx/effects';
+import { take } from 'rxjs/operators';
 
 
 @Injectable()
 export class TodosResolver implements Resolve<any> {
 
     constructor(
-        private store: Store<State>
+        private store: Store<State>,
+        private actions$: Actions,
     ) {
 
     }
 
     resolve(route: ActivatedRouteSnapshot): Observable<boolean> {
-        return this.getProject(route.params.projectId)
-            .pipe(
-                switchMap(() => of(true))
-            );
+        return this.getProject(route.params.projectId);
     }
 
     getProject(projectId: number): Observable<any> {
-        return this.store
-            .select(selectProject)
-            .pipe(
-                tap(() => {
-                    this.store.dispatch(new projectActions.ProjectByIdRequest(projectId));
-                }),
-                take(1)
-            );
+        this.store.dispatch(new projectActions.ProjectByIdRequest(projectId));
+           return this.actions$.pipe(
+            ofType(projectActions.GET_BY_ID_RESPONSE),
+            take(1)
+        );
     }
 
 
