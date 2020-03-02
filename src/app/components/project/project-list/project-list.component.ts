@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { State } from 'src/app/store/state/app.state';
@@ -13,7 +13,7 @@ import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
   styleUrls: ['./project-list.component.css']
 })
 @AutoUnsubscribe({arrayName: "subscriptions"})
-export class ProjectListComponent implements OnInit {
+export class ProjectListComponent implements OnInit, OnDestroy {
 
   private subscriptions: Subscription[] = [];
   private projects: Project[];
@@ -32,8 +32,11 @@ export class ProjectListComponent implements OnInit {
   ngOnInit() {
   }
 
-  projectDetails() {
-    this.router.navigate(['todos']);
+  ngOnDestroy() {
+  }
+
+  projectDetails(projectId: number) {
+    this.router.navigate([`project/${projectId}/todos`]);
   }
 
 

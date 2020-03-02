@@ -1,5 +1,4 @@
-import {ProjectState} from '../state/app.state';
-
+import { ProjectState } from '../state/app.state';
 import * as projectActions from '../project/project.actions';
 
 export const initialState: ProjectState = {
@@ -15,12 +14,21 @@ export function reducer(state = initialState, action: projectActions.ProjectActi
         project: action.response
       };
     }
+
     case projectActions.SEARCH_RESPONSE: {
       return {
         ...state,
         projects: action.response
       };
     }
+
+    case projectActions.GET_BY_ID_RESPONSE: {
+      return {
+        ...state,
+        project: action.response
+      };
+    }
+
   }
   return state;
 }

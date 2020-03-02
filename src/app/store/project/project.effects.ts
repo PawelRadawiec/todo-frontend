@@ -1,16 +1,16 @@
-import {Injectable} from '@angular/core';
-import {Actions, Effect, ofType} from '@ngrx/effects';
-import {ProjectService} from '../../shared/service/project.service';
-import {catchError, map, switchMap} from 'rxjs/internal/operators';
+import { Injectable } from '@angular/core';
+import { Actions, Effect, ofType } from '@ngrx/effects';
+import { ProjectService } from '../../shared/service/project.service';
+import { catchError, map, switchMap } from 'rxjs/internal/operators';
 
 import * as projectActions from '../project/project.actions';
 import * as errorActions from '../errors/error.actions';
-import {of} from 'rxjs';
+import { of } from 'rxjs';
 import { ProjectFilter } from 'src/app/components/models/project.model';
 
 @Injectable()
 export class ProjectEffects {
-  
+
   constructor(
     private actions$: Actions,
     private projectService: ProjectService
@@ -35,16 +35,32 @@ export class ProjectEffects {
 
   @Effect()
   searchRequest = this.actions$.pipe(
-      ofType(projectActions.SEARCH_REQUEST),
-      switchMap((action: projectActions.ProjectSearchRequest) => {
-        return this.projectService.search(new ProjectFilter())
+    ofType(projectActions.SEARCH_REQUEST),
+    switchMap((action: projectActions.ProjectSearchRequest) => {
+      return this.projectService.search(new ProjectFilter())
         .pipe(
           map((response) => {
             return new projectActions.ProjectSearchResponse(response)
           })
         );
-      })
-  )
+    })
+  );
+
+  @Effect()
+  getByIdRequest = this.actions$.pipe(
+    ofType(projectActions.GET_BY_ID_REQUEST),
+    switchMap((action: projectActions.ProjectByIdRequest) => {
+      return this.projectService.getById(action.projectId)
+        .pipe(
+          map((project) => {
+            return new projectActions.ProjectByIdResponse(project);
+          }),
+          catchError((errors) => {
+            return of(new errorActions.ErrorResponse(errors));
+          })
+        );
+    })
+  );
 
 
 }
