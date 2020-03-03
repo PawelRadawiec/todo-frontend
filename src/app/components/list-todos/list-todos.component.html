@@ -1,4 +1,4 @@
-<table class="table table-hover table-dark">
+<!-- <table class="table table-hover table-dark">
   <thead>
     <tr>
       <th scope="col">Title</th>
@@ -24,4 +24,8 @@
     </td>
     </tr>
   </tbody>
-</table>
+</table> -->
+
+<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+  <div class="example-box" *ngFor="let movieName of Movies" cdkDrag>{{movieName}}</div>
+</div>
