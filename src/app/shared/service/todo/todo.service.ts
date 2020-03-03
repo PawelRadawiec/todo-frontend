@@ -7,7 +7,7 @@ import {Todo, TodoFilter} from 'src/app/components/models/todo.model';
 })
 export class TodoService {
 
-  baseUrl = 'http://localhost:8080';
+  baseUrl = 'http://localhost:8080/todo';
 
   constructor(
     private http: HttpClient
@@ -15,23 +15,27 @@ export class TodoService {
   }
 
   getAllTodos(filter: TodoFilter) {
-    return this.http.get<Todo[]>(`${this.baseUrl}/todo/todos`, {params: this.createHttpParams(filter)});
+    return this.http.get<Todo[]>(`${this.baseUrl}/todos`, {params: this.createHttpParams(filter)});
   }
 
   getById(id: number) {
-    return this.http.get<Todo>(`${this.baseUrl}/todo/${id}`);
+    return this.http.get<Todo>(`${this.baseUrl}/${id}`);
   }
 
   saveTodo(request: Todo) {
-    return this.http.post<Todo>(`${this.baseUrl}/todo/create`, request);
+    return this.http.post<Todo>(`${this.baseUrl}/create`, request);
   }
 
   editTodo(request: Todo) {
-    return this.http.put<Todo>(`${this.baseUrl}/todo/update`, request);
+    return this.http.put<Todo>(`${this.baseUrl}/update`, request);
   }
 
   delete(id: number) {
-    return this.http.delete<void>(`${this.baseUrl}/todo/delete/${id}`);
+    return this.http.delete<void>(`${this.baseUrl}/delete/${id}`);
+  }
+
+  getByProjectId(id: number) {
+    return this.http.get<Todo[]>(`${this.baseUrl}/project/todo/${id}`);
   }
 
   private createHttpParams(filter: TodoFilter) {

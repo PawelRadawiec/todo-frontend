@@ -6,7 +6,8 @@ export const initialState: TodoState = {
   todos: [],
   todoById: null,
   editResponse: null,
-  createResponse: null
+  createResponse: null,
+  projectTodoList: []
 };
 
 export function reducer(state = initialState, action: todoActions.TodoActions): TodoState {
@@ -33,6 +34,12 @@ export function reducer(state = initialState, action: todoActions.TodoActions): 
       return {
         ...state,
         createResponse: action.response
+      };
+    }
+    case todoActions.PROJECT_TODO_LIST_RESPONSE: {
+      return {
+        ...state,
+        projectTodoList: action.response
       };
     }
 

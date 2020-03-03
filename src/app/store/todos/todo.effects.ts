@@ -32,6 +32,22 @@ export class TodoEffects {
   );
 
   @Effect()
+  getTodoListByProjectId: Observable<Action> = this.actions$.pipe(
+    ofType(todoActions.PROJECT_TODO_LIST_REQUEST),
+    switchMap((action: todoActions.GetProjectTodoListRequest) => {
+      return this.todoService.getByProjectId(action.id)
+        .pipe(
+          map((todos) => {
+            return new todoActions.GetProjectTodoListResponse(todos);
+          }),
+          catchError((errors) => {
+            return of(new errorActions.ErrorResponse(errors));
+          })
+        )
+    })
+  )
+
+  @Effect()
   getByIdRequest: Observable<Action> = this.actions$.pipe(
     ofType(todoActions.GET_BY_ID_REQUEST),
     concatMap((action: todoActions.TodoGetByIdRequest) => {
@@ -51,7 +67,7 @@ export class TodoEffects {
       this.todoService.saveTodo(action.request)
         .pipe(
           concatMap((todo) => ([
-              new todoActions.CreateTodoResponse(todo)
+            new todoActions.CreateTodoResponse(todo)
           ])),
           catchError((errors) => {
             return of(new errorActions.ErrorResponse(errors));
@@ -85,6 +101,7 @@ export class TodoEffects {
         );
     })
   );
+
 
 }
 

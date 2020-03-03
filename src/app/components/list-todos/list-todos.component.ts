@@ -6,7 +6,7 @@ import { State } from '../../store/state/app.state';
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 import { Todo, TodoFilter } from '../models/todo.model';
 import { AddTodoComponent } from '../add-todo/add-todo.component';
-import { selectProject } from 'src/app/store/selectors/project.selector';
+import { selectProjectTodos } from 'src/app/store/selectors/todo.selector';
 
 
 @Component({
@@ -27,10 +27,8 @@ export class ListTodosComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscriptions.push(
-      this.store.pipe(select(selectProject)).subscribe(project => {
-        if (project) {
-          this.todos = project.todos;
-        }
+      this.store.pipe(select(selectProjectTodos)).subscribe(todos => {
+        this.todos = todos;
       })
     );
   }

@@ -10,12 +10,15 @@ export const CREATE_RESPONSE = '[Todo] CreateTodoResponse';
 export const EDIT_REQUEST = '[Todo] TodoEditRequest';
 export const EDIT_RESPONSE = '[Todo] TodoEditResponse';
 export const DELETE_BY_ID = '[Todo] TodoDeleteById';
+export const PROJECT_TODO_LIST_REQUEST = '[Todo] GetProjectTodoListRequest';
+export const PROJECT_TODO_LIST_RESPONSE = '[Todo] GetProjectTodoListResponse';
+
 
 
 export class SearchRequest implements Action {
   readonly type = SEARCH_REQUEST;
   constructor(public filter: TodoFilter) {
-    
+
   }
 }
 
@@ -82,6 +85,22 @@ export class TodoDeleteById implements Action {
   }
 }
 
+export class GetProjectTodoListRequest implements Action {
+  readonly type = PROJECT_TODO_LIST_REQUEST;
+
+  constructor(public id: number) {
+
+  }
+}
+
+export class GetProjectTodoListResponse implements Action {
+  readonly type = PROJECT_TODO_LIST_RESPONSE;
+
+  constructor(public response: Todo[]) {
+
+  }
+}
+
 
 export type TodoActions = SearchRequest
   | SearchResponse
@@ -91,4 +110,6 @@ export type TodoActions = SearchRequest
   | CreateTodoResponse
   | TodoEditRequest
   | TodoEditResponse
-  | TodoDeleteById;
+  | TodoDeleteById
+  | GetProjectTodoListRequest
+  | GetProjectTodoListResponse;
