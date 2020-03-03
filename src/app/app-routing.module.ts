@@ -12,6 +12,7 @@ import { ActivationComponent } from './components/activation/activation.componen
 import { ActivationResolver } from './shared/resolvers/activation.resolver';
 import { ProjectListComponent } from './components/project/project-list/project-list.component';
 import { ProjectListResolver } from './shared/resolvers/project-list.resolver';
+import { TodosResolver } from './shared/resolvers/todos.resolver';
 
 
 const routes: Routes = [
@@ -38,11 +39,6 @@ const routes: Routes = [
     canActivate: [RouteGuardService]
   },
   {
-    path: 'todos',
-    component: ListTodosComponent,
-    canActivate: [RouteGuardService]
-  },
-  {
     path: 'add-todo',
     component: AddTodoComponent,
     canActivate: [RouteGuardService]
@@ -63,6 +59,14 @@ const routes: Routes = [
     }
   },
   {
+    path: 'project/:projectId/todos',
+    component: ListTodosComponent,
+    canActivate: [RouteGuardService],
+    resolve: {
+      activationResolver: TodosResolver
+    }
+  },
+  {
     path: '**',
     component: ErrorComponent
   }
@@ -73,7 +77,8 @@ const routes: Routes = [
   exports: [RouterModule],
   providers: [
     ActivationResolver, 
-    ProjectListResolver
+    ProjectListResolver,
+    TodosResolver
   ]
 })
 export class AppRoutingModule { }

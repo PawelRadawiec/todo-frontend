@@ -21,6 +21,10 @@ export class ProjectService {
     return this.http.get<Project[]>(`${this.baseUrl}/search`, {params: this.createHttpParams(filter)})
   }
 
+  getById(id: number) {
+    return this.http.get<Project>(`${this.baseUrl}/${id}`);
+  }
+ 
   private createHttpParams(filter: ProjectFilter) {
     let params = new HttpParams();
     if (filter.description) {
