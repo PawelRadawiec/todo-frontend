@@ -1,31 +1,15 @@
-<!-- <table class="table table-hover table-dark">
-  <thead>
-    <tr>
-      <th scope="col">Title</th>
-      <th scope="col">Description</th>
-      <th scope="col">Status</th>
-      <th scope="col">Author</th>
-      <th scope="col">Actions</th>
-    </tr>
-  </thead>
-  <tbody *ngFor="let todo of todos">
-    <tr>
-      <td>{{todo.title}}</td>
-      <td>{{todo.description}}</td>
-      <td>{{todo.targetDate}}</td>
-      <td>{{todo.author}}</td>
-      <td>
-        <button type="button" class="btn btn-action">
-            <i class="fa fa-pencil fa-fw"></i>
-        </button>
-        <button type="button" class="btn btn-action">
-            <i class="fa fa-close"></i>
-        </button>
-    </td>
-    </tr>
-  </tbody>
-</table> -->
+<div class="container">
+  <h4>To do</h4>
+  <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="ToDoList" [cdkDropListConnectedTo]="[doneTodoList]"
+    class="todo-list" (cdkDropListDropped)="onDrop($event)">
+    <div class="todo-block" *ngFor="let toDoList of ToDoList" cdkDrag>{{toDoList}}</div>
+  </div>
+</div>
 
-<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-  <div class="example-box" *ngFor="let movieName of Movies" cdkDrag>{{movieName}}</div>
+<div class="container">
+  <h4>Done</h4>
+  <div cdkDropList #doneTodoList="cdkDropList" [cdkDropListData]="DoneList"
+    [cdkDropListConnectedTo]="[todoList]" class="todo-list" (cdkDropListDropped)="onDrop($event)">
+    <div class="todo-block" *ngFor="let doneList of DoneList" cdkDrag>{{doneList}}</div>
+  </div>
 </div>

@@ -7,7 +7,7 @@ import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 import { Todo, TodoFilter } from '../models/todo.model';
 import { AddTodoComponent } from '../add-todo/add-todo.component';
 import { selectProjectTodos } from 'src/app/store/selectors/todo.selector';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 
 @Component({
@@ -54,19 +54,25 @@ export class ListTodosComponent implements OnInit, OnDestroy {
     this.child.open();
   }
 
-  Movies = [
-    'Blade Runner',
-    'Cool Hand Luke',
-    'Heat',
-    'Juice',
-    'The Far Side of the World',
-    'Morituri',
-    'Napoleon Dynamite',
-    'Pulp Fiction'
+  ToDoList = [
+    'task 1',
+    'task 2',
+    'task 3',
+    'task4 '
   ];
 
-  drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.Movies, event.previousIndex, event.currentIndex);
+  DoneList = [
+  ];
+
+  onDrop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+    }
   }
 
 }
