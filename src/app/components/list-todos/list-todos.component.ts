@@ -19,7 +19,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 export class ListTodosComponent implements OnInit, OnDestroy {
   todos: Todo[] = [];
   private subscriptions: Subscription[] = [];
-  @ViewChild(AddTodoComponent, { static: false }) child: AddTodoComponent;
+  @ViewChild(AddTodoComponent) child: AddTodoComponent;
 
   constructor(
     private store: Store<State>,

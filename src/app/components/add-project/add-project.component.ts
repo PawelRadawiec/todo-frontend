@@ -16,9 +16,9 @@ import { selectProject } from 'src/app/store/selectors/project.selector';
   styleUrls: ['./add-project.component.css']
 })
 export class AddProjectComponent extends ErrorComponent implements OnInit, FormInit {
-  @ViewChild('content', { static: false }) content: ElementRef;
+  @ViewChild('content') content: ElementRef;
   protected subscriptions: Subscription[] = [];
-  private projectForm: FormGroup;
+  projectForm: FormGroup;
 
   constructor(
     private modalService: NgbModal,

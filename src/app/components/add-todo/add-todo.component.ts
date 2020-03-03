@@ -17,7 +17,7 @@ import { ErrorComponent } from '../error/error.component';
 })
 @AutoUnsubscribe()
 export class AddTodoComponent extends ErrorComponent implements OnInit, OnDestroy {
-  @ViewChild('content', { static: false }) content: ElementRef;
+  @ViewChild('content') content: ElementRef;
   protected subscriptions: Subscription[] = [];
   todoForm: FormGroup;
 

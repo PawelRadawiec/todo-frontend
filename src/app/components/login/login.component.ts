@@ -9,9 +9,9 @@ import { FormGroup, FormBuilder } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  private errorMessage = 'Invalid credentials';
-  private invalidLogin = false;
-  private loginForm: FormGroup;
+  errorMessage = 'Invalid credentials';
+  invalidLogin = false;
+  loginForm: FormGroup;
 
   constructor(
     private router: Router,

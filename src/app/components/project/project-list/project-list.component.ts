@@ -16,7 +16,7 @@ import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 export class ProjectListComponent implements OnInit, OnDestroy {
 
   private subscriptions: Subscription[] = [];
-  private projects: Project[];
+  projects: Project[];
 
   constructor(
     private store: Store<State>,

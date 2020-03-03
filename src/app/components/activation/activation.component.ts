@@ -12,7 +12,7 @@ import { selectActiveAccount } from 'src/app/store/selectors/system-user.selecto
 export class ActivationComponent implements OnInit {
 
   private subscriptions: Subscription[] = [];
-  private activeAccount: boolean;
+  activeAccount: boolean;
 
   constructor(private store: Store<State>) {
     this.subscriptions.push(store.select(selectActiveAccount)
