@@ -8,6 +8,7 @@ import { Todo, TodoFilter } from '../models/todo.model';
 import { AddTodoComponent } from '../add-todo/add-todo.component';
 import { selectProjectTodos } from 'src/app/store/selectors/todo.selector';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import * as cloneDeep from 'lodash/cloneDeep';
 
 
 @Component({
@@ -18,18 +19,9 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 @AutoUnsubscribe({ arrayName: 'subscriptions' })
 export class ListTodosComponent implements OnInit, OnDestroy {
   todos: Todo[] = [];
-  ToDoList = [
-    'task 1',
-    'task 2',
-    'task 3',
-    'task4 '
-  ];
-  InProgressList = [
-
-  ];
-
-  DoneList = [
-  ];
+  ToDoList: Todo[] = [];
+  InProgressList: Todo[] = [];
+  DoneList: Todo[] = [];
   private subscriptions: Subscription[] = [];
   @ViewChild(AddTodoComponent) child: AddTodoComponent;
 
@@ -41,7 +33,8 @@ export class ListTodosComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscriptions.push(
       this.store.pipe(select(selectProjectTodos)).subscribe(todos => {
-        this.todos = todos;
+        this.todos = cloneDeep(todos);
+        this.ToDoList = cloneDeep(todos);
       })
     );
   }
