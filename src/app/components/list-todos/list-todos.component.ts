@@ -18,6 +18,18 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 @AutoUnsubscribe({ arrayName: 'subscriptions' })
 export class ListTodosComponent implements OnInit, OnDestroy {
   todos: Todo[] = [];
+  ToDoList = [
+    'task 1',
+    'task 2',
+    'task 3',
+    'task4 '
+  ];
+  InProgressList = [
+
+  ];
+
+  DoneList = [
+  ];
   private subscriptions: Subscription[] = [];
   @ViewChild(AddTodoComponent) child: AddTodoComponent;
 
@@ -54,17 +66,8 @@ export class ListTodosComponent implements OnInit, OnDestroy {
     this.child.open();
   }
 
-  ToDoList = [
-    'task 1',
-    'task 2',
-    'task 3',
-    'task4 '
-  ];
-
-  DoneList = [
-  ];
-
   onDrop(event: CdkDragDrop<string[]>) {
+    console.log('event: ', event);
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
