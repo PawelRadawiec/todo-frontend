@@ -18,4 +18,5 @@ export class ActivationResolver implements Resolve<any> {
         }
     }
 
+    
 }

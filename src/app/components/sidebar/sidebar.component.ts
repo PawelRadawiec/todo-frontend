@@ -15,8 +15,8 @@ export class SidebarComponent implements OnInit {
 
   description: string;
   sortBy: string;
-  @ViewChild(AddTodoComponent, {static: false}) childTodo: AddTodoComponent;
-  @ViewChild(AddProjectComponent, {static: false}) childProject: AddProjectComponent;
+  @ViewChild(AddTodoComponent) childTodo: AddTodoComponent;
+  @ViewChild(AddProjectComponent) childProject: AddProjectComponent;
 
 
   constructor(
@@ -27,9 +27,9 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
   }
 
-  private _opened: boolean = false;
+  _opened: boolean = false;
 
-  private _toggleSidebar() {
+  _toggleSidebar() {
     this._opened = !this._opened;
   }
 

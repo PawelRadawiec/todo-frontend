@@ -6,7 +6,7 @@
   </div>
   <ng-sidebar [(opened)]="_opened" [animate]="true">
     <div class="form-group">
-      <button type="button" class="close" aria-label="Close" (click)="_toggleSidebar()()">
+      <button type="button" class="close" aria-label="Close" (click)="_toggleSidebar()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
@@ -19,7 +19,6 @@
       </div>
       <label for="sel1">Sort todos by:</label>
       <select class="form-control" id="sel1" [(ngModel)]="sortBy">
-        <option [ngValue]="target">target</option>
         <option [ngValue]="description">description</option>
       </select>
     </div>
@@ -39,5 +38,4 @@
     </div>
   </ng-sidebar>
 </ng-sidebar-container>
-<app-add-todo></app-add-todo>
 <app-add-project></app-add-project>

@@ -1,6 +1,67 @@
 .btn-action {
-    background: none;
-    border: 2px solid #94e4af;
-    margin-top: 10px;
-    color: white;
+  background: none;
+  border: 2px solid #94e4af;
+  margin-top: 10px;
+  color: white;
+}
+
+.wrapper {
+  margin: 10px auto;
+  max-width: 600px;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.container {
+  width: 30%;
+  margin: 0 10px 10px 0;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.todo-list {
+  width: 80%;
+  border: solid 1px #ccc;
+  min-height: 60px;
+  display: inline-block;
+  background: #343a40;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 25px;
+}
+
+.todo-block {
+  padding: 20px 10px;
+  border-bottom: solid 1px #ccc;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  background: #343a40;
+  font-size: 14px;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.todo-block:last-child {
+  border: none;
+}
+
+.todo-list.cdk-drop-list-dragging .movie-block:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
