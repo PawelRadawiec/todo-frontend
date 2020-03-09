@@ -39,6 +39,7 @@ export interface ErrorsState {
 export interface ProjectState {
   projects: Project[];
   project: Project;
+  projectId: number;
 }
 
 export const reducers: ActionReducerMap<State> = {

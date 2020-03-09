@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { ofType, Actions } from '@ngrx/effects';
 import { take } from 'rxjs/operators';
 import * as todoActions from '../../store/todos/todos.actions';
-
+import * as projectActions from '../../store/project/project.actions';
 
 @Injectable()
 export class TodosResolver implements Resolve<any> {
@@ -23,6 +23,7 @@ export class TodosResolver implements Resolve<any> {
     }
 
     getProject(projectId: number): Observable<any> {
+        this.store.dispatch(new projectActions.ProjectSetId(projectId));
         this.store.dispatch(new todoActions.GetProjectTodoListRequest(projectId));
         return this.actions$.pipe(
             ofType(todoActions.PROJECT_TODO_LIST_RESPONSE),

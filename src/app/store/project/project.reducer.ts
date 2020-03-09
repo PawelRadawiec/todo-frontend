@@ -3,7 +3,8 @@ import * as projectActions from '../project/project.actions';
 
 export const initialState: ProjectState = {
   project: null,
-  projects: null
+  projects: null,
+  projectId: null
 };
 
 export function reducer(state = initialState, action: projectActions.ProjectActions) {
@@ -27,6 +28,13 @@ export function reducer(state = initialState, action: projectActions.ProjectActi
         ...state,
         project: action.response
       };
+    }
+
+    case projectActions.SET_PROJECT_ID: {
+      return {
+        ...state,
+        projectId: action.projectId
+      }
     }
 
   }

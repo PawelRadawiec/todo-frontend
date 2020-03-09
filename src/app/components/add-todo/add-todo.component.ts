@@ -9,6 +9,10 @@ import { selectGetByIdTodo, selectCreateResponse } from '../../store/selectors/t
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ErrorComponent } from '../error/error.component';
+import { ActivatedRoute } from '@angular/router';
+import { Project } from '../models/project.model';
+import { selectProjectId } from 'src/app/store/selectors/project.selector';
+import * as todoActions  from '../../store/todos/todos.actions';
 
 @Component({
   selector: 'app-add-todo',
@@ -20,20 +24,26 @@ export class AddTodoComponent extends ErrorComponent implements OnInit, OnDestro
   @ViewChild('content') content: ElementRef;
   protected subscriptions: Subscription[] = [];
   todoForm: FormGroup;
+  projectId: number;
 
   constructor(
     private modalService: NgbModal,
     protected store: Store<State>,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute
   ) {
     super(store);
     this.subscriptions.push(
       this.store.pipe(select(selectGetByIdTodo)).subscribe(todo => { })
     );
     this.subscriptions.push(
+      this.store.pipe(select(selectProjectId)).subscribe(projectId => {
+        this.projectId = projectId;
+      }),
       this.store.pipe(select(selectCreateResponse)).subscribe(createResponse => {
         if (createResponse) {
           this.closeModal();
+          this.store.dispatch(new todoActions.GetProjectTodoListRequest(this.projectId));
         }
       })
     );
@@ -48,7 +58,11 @@ export class AddTodoComponent extends ErrorComponent implements OnInit, OnDestro
   }
 
   onSubmit() {
-    this.store.dispatch(new CreateTodoRequest(new Todo(this.todoForm.value)));
+    let project = new Project();
+    project.id = this.projectId;
+    const todo = new Todo(this.todoForm.value)
+    todo.project = project;
+    this.store.dispatch(new CreateTodoRequest(todo));
   }
 
   closeModal() {

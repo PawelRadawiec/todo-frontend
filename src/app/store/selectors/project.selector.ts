@@ -12,3 +12,8 @@ export const selectProjects = createSelector(
   getProjectState,
   (state: ProjectState) => state.projects
 );
+
+export const selectProjectId = createSelector(
+  getProjectState,
+  (state: ProjectState) => state.projectId
+);

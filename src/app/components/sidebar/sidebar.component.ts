@@ -1,10 +1,11 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {Store} from '@ngrx/store';
-import {State} from '../../store/state/app.state';
-import {SearchRequest} from 'src/app/store/todos/todos.actions';
-import {TodoFilter} from '../models/todo.model';
-import {AddTodoComponent} from '../add-todo/add-todo.component';
-import {AddProjectComponent} from '../add-project/add-project.component';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { State } from '../../store/state/app.state';
+import { SearchRequest } from 'src/app/store/todos/todos.actions';
+import { TodoFilter } from '../models/todo.model';
+import { AddTodoComponent } from '../add-todo/add-todo.component';
+import { AddProjectComponent } from '../add-project/add-project.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,12 +13,12 @@ import {AddProjectComponent} from '../add-project/add-project.component';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-
+  projectId: string;
   description: string;
   sortBy: string;
+  _opened: boolean = false;
   @ViewChild(AddTodoComponent) childTodo: AddTodoComponent;
   @ViewChild(AddProjectComponent) childProject: AddProjectComponent;
-
 
   constructor(
     private store: Store<State>
@@ -26,8 +27,6 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  _opened: boolean = false;
 
   _toggleSidebar() {
     this._opened = !this._opened;
@@ -48,4 +47,5 @@ export class SidebarComponent implements OnInit {
     this.childProject.open();
   }
 
+  
 }

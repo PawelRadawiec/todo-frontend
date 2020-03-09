@@ -7,6 +7,7 @@ export const SEARCH_REQUEST = '[Project] ProjectSearchRequest';
 export const SEARCH_RESPONSE = '[Project] ProjectSearchResponse';
 export const GET_BY_ID_REQUEST = '[Project] ProjectByIdRequest';
 export const GET_BY_ID_RESPONSE = '[Project] ProjectByIdResponse';
+export const SET_PROJECT_ID = '[Project] ProjectSetId';
 
 
 export class ProjectCreateRequest implements Action {
@@ -55,10 +56,19 @@ export class ProjectByIdResponse implements Action {
   }
 }
 
+export class ProjectSetId implements Action {
+  readonly type = SET_PROJECT_ID;
+  
+  constructor(public projectId: number) {
+
+  }
+}
+
 
 export type ProjectActions = ProjectCreateRequest
   | ProjectCreateResponse
   | ProjectSearchRequest
   | ProjectSearchResponse
   | ProjectByIdRequest
-  | ProjectByIdResponse;
+  | ProjectByIdResponse
+  | ProjectSetId;
