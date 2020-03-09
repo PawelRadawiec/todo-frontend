@@ -6,11 +6,13 @@ export class Todo {
   description: string;
   done: string;
   title: string;
-  status: TodoStatus;
+  status: string;
   targetDate: Date;
   author: string;
   subtasks: Subtask[] = [];
   project: Project;
+  listConnectedTo: string[] = [];
+  tagName: string;
 
   constructor(props = {}) {
     Object.assign(this, props);
@@ -23,8 +25,3 @@ export class TodoFilter {
   description: string;
 }
 
-export enum TodoStatus {
-  TO_DO = 'TO_DO',
-  IN_PROGRESS = 'IN_PROGRESS',
-  DONE = 'DONE'
-}
