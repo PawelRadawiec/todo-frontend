@@ -1,7 +1,7 @@
 <div class="container" *ngFor="let todo of todos">
-  <p>status: {{todo.status}}</p>
   <div cdkDropList id="{{todo.status}}" [cdkDropListData]="todo.subtasks"
     [cdkDropListConnectedTo]="connectedTo" class="todo-list" (cdkDropListDropped)="onDrop($event)">
+    <div class="todo-title">{{todo.title}}</div>
     <div class="todo-block" *ngFor="let subtask of todo.subtasks" cdkDrag>{{subtask.content}}</div>
   </div>
 </div>

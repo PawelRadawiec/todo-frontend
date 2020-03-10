@@ -79,11 +79,14 @@ export class TodoEffects {
   @Effect()
   editTodoRequest: Observable<Action> = this.actions$.pipe(
     ofType(todoActions.EDIT_REQUEST),
-    concatMap((action: todoActions.TodoEditRequest) => {
+    switchMap((action: todoActions.TodoEditRequest) => {
       return this.todoService.editTodo(action.request)
         .pipe(
           map((todo) => {
             return new todoActions.TodoEditResponse(todo);
+          }),
+          catchError((errors) => {
+            return of(new errorActions.ErrorResponse(errors));
           })
         );
     })

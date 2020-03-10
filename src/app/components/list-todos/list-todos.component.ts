@@ -7,7 +7,7 @@ import { Todo, TodoFilter } from '../models/todo.model';
 import { AddTodoComponent } from '../add-todo/add-todo.component';
 import { selectProjectTodos } from 'src/app/store/selectors/todo.selector';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { cloneDeep } from 'lodash';
+import * as _ from 'lodash';
 import { ActivatedRoute } from '@angular/router';
 import { Project } from '../models/project.model';
 import * as todoActions from '../../store/todos/todos.actions';
@@ -35,7 +35,7 @@ export class ListTodosComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscriptions.push(
       this.store.pipe(select(selectProjectTodos)).subscribe(todos => {
-        this.todos = cloneDeep(todos);
+        this.todos = _.cloneDeep(todos);
         for (let todo of this.todos) {
           this.connectedTo.push(todo.status);
         };
@@ -82,7 +82,7 @@ export class ListTodosComponent implements OnInit, OnDestroy {
   }
 
   updateSubtask(changedTodo: Todo) {
-    let todo = new Todo(changedTodo);
+    let todo = _.cloneDeep(changedTodo);
     todo.project = new Project();
     todo.project.id = this.projectId;
     this.store.dispatch(new todoActions.TodoEditRequest(todo));
