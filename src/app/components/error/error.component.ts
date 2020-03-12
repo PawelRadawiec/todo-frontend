@@ -1,16 +1,15 @@
-import {OnDestroy, OnInit} from '@angular/core';
-import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
-import {State} from '../../store/state/app.state';
-import {Store} from '@ngrx/store';
-import {Subscription} from 'rxjs';
-import {selectError} from '../../store/selectors/error.selector';
-import {HttpErrorResponse} from '@angular/common/http';
-import {FormGroup} from '@angular/forms';
+import { OnDestroy, OnInit } from '@angular/core';
+import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
+import { State } from '../../store/state/app.state';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+import { selectError } from '../../store/selectors/error.selector';
+import { HttpErrorResponse } from '@angular/common/http';
+import { FormGroup } from '@angular/forms';
 
 
-@AutoUnsubscribe()
+@AutoUnsubscribe({arrayName: 'subscriptions'})
 export class ErrorComponent implements OnInit, OnDestroy {
-
   protected subscriptions: Subscription[] = [];
   errorResponse: HttpErrorResponse;
   form: FormGroup;

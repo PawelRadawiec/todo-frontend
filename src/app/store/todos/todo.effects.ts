@@ -82,9 +82,10 @@ export class TodoEffects {
     switchMap((action: todoActions.TodoEditRequest) => {
       return this.todoService.editTodo(action.request)
         .pipe(
-          map((todo) => {
-            return new todoActions.TodoEditResponse(todo);
-          }),
+          switchMap(todo => [
+            new todoActions.TodoEditResponse(todo),
+            new todoActions.GetProjectTodoListRequest(action.request.project.id)
+          ]),
           catchError((errors) => {
             return of(new errorActions.ErrorResponse(errors));
           })

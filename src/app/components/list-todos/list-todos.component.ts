@@ -11,6 +11,7 @@ import * as _ from 'lodash';
 import { ActivatedRoute } from '@angular/router';
 import { Project } from '../models/project.model';
 import * as todoActions from '../../store/todos/todos.actions';
+import { AddSubtaskComponent } from '../add-subtask/add-subtask.component';
 
 
 @Component({
@@ -21,6 +22,7 @@ import * as todoActions from '../../store/todos/todos.actions';
 @AutoUnsubscribe({ arrayName: 'subscriptions' })
 export class ListTodosComponent implements OnInit, OnDestroy {
   @ViewChild(AddTodoComponent) child: AddTodoComponent;
+  @ViewChild(AddSubtaskComponent) subtaskChild: AddSubtaskComponent;
   private subscriptions: Subscription[] = [];
   private projectId;
   todos: Todo[] = [];
@@ -45,6 +47,11 @@ export class ListTodosComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+  }
+
+  openSubtaskModal(todo: Todo) {
+    this.store.dispatch(new todoActions.TodoGetByIdRequest(todo.id));
+    this.subtaskChild.open();
   }
 
   getAllTodos() {

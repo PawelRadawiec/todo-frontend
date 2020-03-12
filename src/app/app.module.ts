@@ -35,6 +35,7 @@ import { AddProjectComponent } from './components/add-project/add-project.compon
 import { ProjectEffects } from './store/project/project.effects';
 import { ProjectListComponent } from './components/project/project-list/project-list.component';
 import { TodoComponent } from './components/todo/todo.component';
+import { AddSubtaskComponent } from './components/add-subtask/add-subtask.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { TodoComponent } from './components/todo/todo.component';
     ActivationComponent,
     AddProjectComponent,
     ProjectListComponent,
-    TodoComponent
+    TodoComponent,
+    AddSubtaskComponent
   ],
   imports: [
     BrowserModule,

@@ -26,6 +26,11 @@ export class AddProjectComponent extends ErrorComponent implements OnInit, FormI
     private formBuilder: FormBuilder
   ) {
     super(store);
+  }
+
+  ngOnInit() {
+    this.initForm();
+    this.form = this.projectForm;
     this.subscriptions.push(
       this.store.pipe(select(selectProject)).subscribe(project => {
         if(project) {
@@ -33,11 +38,6 @@ export class AddProjectComponent extends ErrorComponent implements OnInit, FormI
         }
       })
     )
-  }
-
-  ngOnInit() {
-    this.initForm();
-    this.form = this.projectForm;
   }
 
   onSubmit() {
