@@ -22,3 +22,8 @@ export const selectProjectTodos = createSelector(
   getTodoState,
   (state: TodoState) => state.projectTodoList
 );
+
+export const selectEditResponse = createSelector(
+  getTodoState,
+  (state: TodoState) => state.editResponse
+);

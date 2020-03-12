@@ -14,7 +14,6 @@ export const PROJECT_TODO_LIST_REQUEST = '[Todo] GetProjectTodoListRequest';
 export const PROJECT_TODO_LIST_RESPONSE = '[Todo] GetProjectTodoListResponse';
 
 
-
 export class SearchRequest implements Action {
   readonly type = SEARCH_REQUEST;
   constructor(public filter: TodoFilter) {
