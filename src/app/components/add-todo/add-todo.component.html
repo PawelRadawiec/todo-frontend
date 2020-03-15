@@ -1,6 +1,6 @@
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">create</h4>
+    <h4 class="modal-title" id="modal-basic-title">Todo</h4>
     <button type="button" class="close" aria-label="Close" (click)="closeModal()">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -17,12 +17,6 @@
         <input type="text" class="form-control" placeholder="description" id="description" formControlName="description">
         <div class="col-sm-3" class="text-danger" *ngIf="containError('description')">
           {{ errorMessage('description') }}
-        </div>
-      </div>
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="Status" id="status" formControlName="status">
-        <div class="col-sm-3" class="text-danger" *ngIf="containError('status')">
-          {{ errorMessage('status') }}
         </div>
       </div>
     </form>
