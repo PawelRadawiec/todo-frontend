@@ -4,10 +4,10 @@ import { TodoService } from 'src/app/shared/service/todo/todo.service';
 import { Observable, of } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { switchMap, map, concatMap, catchError } from 'rxjs/operators';
-import { TodoFilter } from 'src/app/components/models/todo.model';
 
 import * as todoActions from './todos.actions';
 import * as errorActions from '../errors/error.actions';
+import { TodoFilter } from 'src/app/shared/models/todo.model';
 
 @Injectable()
 export class TodoEffects {
@@ -25,7 +25,7 @@ export class TodoEffects {
       return this.todoService.getAllTodos(action.filter)
         .pipe(
           map((todos) => {
-            return new todoActions.SearchResponse(todos)
+            return new todoActions.SearchResponse(todos);
           })
         );
     })
@@ -43,9 +43,9 @@ export class TodoEffects {
           catchError((errors) => {
             return of(new errorActions.ErrorResponse(errors));
           })
-        )
+        );
     })
-  )
+  );
 
   @Effect()
   getByIdRequest: Observable<Action> = this.actions$.pipe(

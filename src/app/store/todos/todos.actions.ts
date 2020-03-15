@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Todo, TodoFilter } from 'src/app/components/models/todo.model';
+import { TodoFilter, Todo } from 'src/app/shared/models/todo.model';
 
 export const SEARCH_REQUEST = '[Todo] SearchRequest';
 export const SEARCH_RESPONSE = '[Todo] SearchResponse';
