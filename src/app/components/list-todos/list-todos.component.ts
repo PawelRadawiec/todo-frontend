@@ -3,15 +3,15 @@ import { Store, select } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { State } from '../../store/state/app.state';
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
-import { Todo, TodoFilter } from '../models/todo.model';
 import { AddTodoComponent } from '../add-todo/add-todo.component';
 import { selectProjectTodos } from 'src/app/store/selectors/todo.selector';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import * as _ from 'lodash';
 import { ActivatedRoute } from '@angular/router';
-import { Project } from '../models/project.model';
 import * as todoActions from '../../store/todos/todos.actions';
 import { AddSubtaskComponent } from '../add-subtask/add-subtask.component';
+import { Todo, TodoFilter } from 'src/app/shared/models/todo.model';
+import { Project } from 'src/app/shared/models/project.model';
 
 
 @Component({
@@ -38,9 +38,9 @@ export class ListTodosComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.store.pipe(select(selectProjectTodos)).subscribe(todos => {
         this.todos = _.cloneDeep(todos);
-        for (let todo of this.todos) {
+        for (const todo of this.todos) {
           this.connectedTo.push(todo.status);
-        };
+        }
       })
     );
     this.projectId = this.route.snapshot.paramMap.get('projectId');
@@ -55,7 +55,7 @@ export class ListTodosComponent implements OnInit, OnDestroy {
   }
 
   getAllTodos() {
-    this.store.dispatch(new todoActions.SearchRequest(new TodoFilter));
+    this.store.dispatch(new todoActions.SearchRequest(new TodoFilter()));
   }
 
   getById(id: number) {
@@ -64,7 +64,7 @@ export class ListTodosComponent implements OnInit, OnDestroy {
   }
 
   deleteById(id: number) {
-    this.store.dispatch(new todoActions.TodoDeleteById(id))
+    this.store.dispatch(new todoActions.TodoDeleteById(id));
   }
 
   openAddModal() {
@@ -89,7 +89,7 @@ export class ListTodosComponent implements OnInit, OnDestroy {
   }
 
   updateSubtask(changedTodo: Todo) {
-    let todo = _.cloneDeep(changedTodo);
+    const todo = _.cloneDeep(changedTodo);
     todo.project = new Project();
     todo.project.id = this.projectId;
     this.store.dispatch(new todoActions.TodoEditRequest(todo));

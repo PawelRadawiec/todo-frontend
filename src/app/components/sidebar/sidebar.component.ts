@@ -2,10 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { State } from '../../store/state/app.state';
 import { SearchRequest } from 'src/app/store/todos/todos.actions';
-import { TodoFilter } from '../models/todo.model';
 import { AddTodoComponent } from '../add-todo/add-todo.component';
-import { AddProjectComponent } from '../add-project/add-project.component';
-import { ActivatedRoute } from '@angular/router';
+import { AddProjectComponent } from 'src/app/project/project/components/add-project/add-project.component';
+import { TodoFilter } from 'src/app/shared/models/todo.model';
 
 @Component({
   selector: 'app-sidebar',
@@ -47,5 +46,5 @@ export class SidebarComponent implements OnInit {
     this.childProject.open();
   }
 
-  
+
 }

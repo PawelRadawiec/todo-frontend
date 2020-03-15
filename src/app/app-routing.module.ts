@@ -10,9 +10,9 @@ import { AddTodoComponent } from './components/add-todo/add-todo.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { ActivationComponent } from './components/activation/activation.component';
 import { ActivationResolver } from './shared/resolvers/activation.resolver';
-import { ProjectListComponent } from './components/project/project-list/project-list.component';
 import { ProjectListResolver } from './shared/resolvers/project-list.resolver';
 import { TodosResolver } from './shared/resolvers/todos.resolver';
+import { ProjectListComponent } from './project/project/components/project-list/project-list.component';
 
 
 const routes: Routes = [
@@ -76,7 +76,7 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
   providers: [
-    ActivationResolver, 
+    ActivationResolver,
     ProjectListResolver,
     TodosResolver
   ]

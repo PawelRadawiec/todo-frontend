@@ -31,11 +31,12 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { SystemUserEffects } from './store/system-user/system-user.effects';
 import { ConfirmRegistrationComponent } from './components/confirm-registration/confirm-registration.component';
 import { ActivationComponent } from './components/activation/activation.component';
-import { AddProjectComponent } from './components/add-project/add-project.component';
+//import { AddProjectComponent } from './components/add-project/add-project.component';
 import { ProjectEffects } from './store/project/project.effects';
-import { ProjectListComponent } from './components/project/project-list/project-list.component';
+//import { ProjectListComponent } from './components/project/project-list/project-list.component';
 import { TodoComponent } from './components/todo/todo.component';
 import { AddSubtaskComponent } from './components/add-subtask/add-subtask.component';
+import { ProjectModule } from './project/project/project.module';
 
 @NgModule({
   declarations: [
@@ -52,8 +53,8 @@ import { AddSubtaskComponent } from './components/add-subtask/add-subtask.compon
     RegistrationComponent,
     ConfirmRegistrationComponent,
     ActivationComponent,
-    AddProjectComponent,
-    ProjectListComponent,
+    //AddProjectComponent,
+    //ProjectListComponent,
     TodoComponent,
     AddSubtaskComponent
   ],
@@ -66,6 +67,7 @@ import { AddSubtaskComponent } from './components/add-subtask/add-subtask.compon
     HttpClientModule,
     BrowserAnimationsModule,
     DragDropModule,
+    ProjectModule,
     SidebarModule.forRoot(),
     EffectsModule.forRoot([
       TodoEffects,

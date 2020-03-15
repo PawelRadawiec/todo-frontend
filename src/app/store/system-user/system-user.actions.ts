@@ -1,5 +1,5 @@
 import {Action} from '@ngrx/store';
-import {SystemUser} from 'src/app/components/models/system-user.model';
+import { SystemUser } from 'src/app/shared/models/system-user.model';
 
 export const REGISTRATION_RQUEST = '[SystemUser] RegistrationRequest';
 export const REGISTRATION_RESPONSE = '[SystemUser] RegistrationResponse';

@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Project, ProjectFilter } from 'src/app/components/models/project.model';
+import { Project, ProjectFilter } from 'src/app/shared/models/project.model';
 
 export const CREATE_REQUEST = '[Project] ProjectCreateRequest';
 export const CREATE_RESPONSE = '[Project] ProjectCreateResponse';
@@ -58,7 +58,7 @@ export class ProjectByIdResponse implements Action {
 
 export class ProjectSetId implements Action {
   readonly type = SET_PROJECT_ID;
-  
+
   constructor(public projectId: number) {
 
   }

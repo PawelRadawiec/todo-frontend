@@ -3,12 +3,12 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Store, select } from '@ngrx/store';
 import { State } from 'src/app/store/state/app.state';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ErrorComponent } from '../error/error.component';
-import { FormInit } from '../models/form.interface';
 import { ProjectCreateRequest } from 'src/app/store/project/project.actions';
-import { Project } from '../models/project.model';
 import { Subscription } from 'rxjs';
 import { selectProject } from 'src/app/store/selectors/project.selector';
+import { ErrorComponent } from 'src/app/components/error/error.component';
+import { Project } from 'src/app/shared/models/project.model';
+import { FormInit } from 'src/app/shared/models/form.interface';
 
 @Component({
   selector: 'app-add-project',
@@ -33,11 +33,11 @@ export class AddProjectComponent extends ErrorComponent implements OnInit, FormI
     this.form = this.projectForm;
     this.subscriptions.push(
       this.store.pipe(select(selectProject)).subscribe(project => {
-        if(project) {
+        if (project) {
           this.closeModal();
         }
       })
-    )
+    );
   }
 
   onSubmit() {

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import {Todo, TodoFilter} from 'src/app/components/models/todo.model';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import { TodoFilter, Todo } from '../../models/todo.model';
 
 @Injectable({
   providedIn: 'root'
@@ -45,5 +45,6 @@ export class TodoService {
     }
     return params;
   }
+
 
 }

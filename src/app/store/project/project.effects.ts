@@ -6,7 +6,7 @@ import { catchError, map, switchMap } from 'rxjs/internal/operators';
 import * as projectActions from '../project/project.actions';
 import * as errorActions from '../errors/error.actions';
 import { of } from 'rxjs';
-import { ProjectFilter } from 'src/app/components/models/project.model';
+import { ProjectFilter } from 'src/app/shared/models/project.model';
 
 @Injectable()
 export class ProjectEffects {

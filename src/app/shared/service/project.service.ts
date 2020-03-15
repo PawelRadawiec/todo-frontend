@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {Project, ProjectFilter} from '../../components/models/project.model';
+import { Project, ProjectFilter } from '../models/project.model';
+
 
 @Injectable({
   providedIn: 'root'

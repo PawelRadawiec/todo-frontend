@@ -5,11 +5,11 @@ import { Store, select } from '@ngrx/store';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ErrorComponent } from '../error/error.component';
 import { TodoEditRequest } from 'src/app/store/todos/todos.actions';
-import { Todo } from '../models/todo.model';
 import * as _ from 'lodash';
 import { selectGetByIdTodo, selectEditResponse } from 'src/app/store/selectors/todo.selector';
 import { selectProjectId } from 'src/app/store/selectors/project.selector';
-import { Project } from '../models/project.model';
+import { Project } from 'src/app/shared/models/project.model';
+import { Todo } from 'src/app/shared/models/todo.model';
 
 @Component({
   selector: 'app-add-subtask',
@@ -43,13 +43,13 @@ export class AddSubtaskComponent extends ErrorComponent implements OnInit {
       this.store.pipe(select(selectEditResponse)).subscribe(response => {
         this.closeModal();
       })
-    )
+    );
   }
 
   onSubmit() {
     const todo = _.cloneDeep(this.todo);
     todo.project = new Project({ id: this.projectId });
-    todo.subtasks.push(this.subtaskForm.value)
+    todo.subtasks.push(this.subtaskForm.value);
     this.store.dispatch(new TodoEditRequest(todo));
   }
 

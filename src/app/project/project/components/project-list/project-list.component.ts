@@ -2,17 +2,17 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { State } from 'src/app/store/state/app.state';
-import { selectProject, selectProjects } from 'src/app/store/selectors/project.selector';
-import { Project } from '../../models/project.model';
+import { selectProjects } from 'src/app/store/selectors/project.selector';
 import { Router } from '@angular/router';
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
+import { Project } from 'src/app/shared/models/project.model';
 
 @Component({
   selector: 'app-project-list',
   templateUrl: './project-list.component.html',
   styleUrls: ['./project-list.component.css']
 })
-@AutoUnsubscribe({arrayName: "subscriptions"})
+@AutoUnsubscribe({arrayName: 'subscriptions'})
 export class ProjectListComponent implements OnInit, OnDestroy {
 
   private subscriptions: Subscription[] = [];
@@ -26,7 +26,7 @@ export class ProjectListComponent implements OnInit, OnDestroy {
       this.store.select(selectProjects).subscribe((projects) => {
         this.projects = projects;
       })
-    )
+    );
   }
 
   ngOnInit() {

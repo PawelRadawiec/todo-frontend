@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SystemUser } from 'src/app/components/models/system-user.model';
+import { SystemUser } from '../models/system-user.model';
+
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class SysteUserService {
   activation(activationCode: string) {
     const activation = {
       activationCode: activationCode
-    }
+    };
     return this.http.post<any>(`${this.baseUrl}/activation`, activation);
   }
 
