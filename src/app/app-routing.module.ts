@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ErrorComponent } from './components/error/error.component';
 import { RouteGuardService } from './shared/service/route-guard.service';
 import { ActivationResolver } from './shared/resolvers/activation.resolver';
 import { ProjectListResolver } from './shared/resolvers/project-list.resolver';
@@ -13,6 +12,7 @@ import { RegistrationComponent } from './modules/system-user/components/registra
 import { LogoutComponent } from './modules/system-user/components/logout/logout.component';
 import { WelcomeComponent } from './modules/system-user/components/welcome/welcome.component';
 import { ActivationComponent } from './modules/system-user/components/activation/activation.component';
+import { ErrorComponent } from './modules/common/components/error/error.component';
 
 
 const routes: Routes = [

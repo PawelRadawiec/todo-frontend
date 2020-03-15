@@ -6,8 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { YesNoPipe } from './shared/pipes/yes-no.pipe';
-import { MenuComponent } from './components/menu/menu.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -17,13 +15,16 @@ import { environment } from '../environments/environment';
 import { TodoEffects } from './store/todos/todo.effects';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpInterceptorBasicAuthService } from './shared/service/http/http-interceptor-basic-auth.service';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { metaReducers } from './store/state/app.state';
 import { SystemUserEffects } from './store/system-user/system-user.effects';
 import { ProjectEffects } from './store/project/project.effects';
 import { TodoModule } from './modules/todo/todo.module';
 import { ProjectModule } from './modules/project/project.module';
 import { SystemUserModule } from './modules/system-user/system-user.module';
+import { CommonModule } from '@angular/common';
+import { MenuComponent } from './modules/common/components/menu/menu.component';
+import { FooterComponent } from './modules/common/components/footer/footer.component';
+import { SidebarComponent } from './modules/common/components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { SystemUserModule } from './modules/system-user/system-user.module';
     ProjectModule,
     TodoModule,
     SystemUserModule,
+    CommonModule,
     SidebarModule.forRoot(),
     EffectsModule.forRoot([
       TodoEffects,

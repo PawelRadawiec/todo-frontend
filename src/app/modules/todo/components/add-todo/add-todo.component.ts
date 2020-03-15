@@ -9,9 +9,9 @@ import { Project } from 'src/app/shared/models/project.model';
 import { Todo, TodoFilter } from 'src/app/shared/models/todo.model';
 import * as todoActions from '../../../../store/todos/todos.actions';
 import { State } from 'src/app/store/state/app.state';
-import { ErrorComponent } from 'src/app/components/error/error.component';
 import { selectGetByIdTodo, selectCreateResponse } from 'src/app/store/selectors/todo.selector';
 import { CreateTodoRequest, SearchRequest } from 'src/app/store/todos/todos.actions';
+import { ErrorComponent } from 'src/app/modules/common/components/error/error.component';
 
 @Component({
   selector: 'app-add-todo',

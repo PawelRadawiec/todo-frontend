@@ -6,7 +6,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { selectRegisteredUser } from 'src/app/store/selectors/system-user.selector';
 import { SystemUser } from 'src/app/shared/models/system-user.model';
-import { ErrorComponent } from 'src/app/components/error/error.component';
+import { ErrorComponent } from 'src/app/modules/common/components/error/error.component';
 
 
 @Component({

@@ -7,11 +7,15 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { ConfirmRegistrationComponent } from './components/confirm-registration/confirm-registration.component';
 import { ActivationComponent } from './components/activation/activation.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
+import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 
 @NgModule({
     imports: [
         CommonModule,
         ReactiveFormsModule,
+        AppRoutingModule,
+        RouterModule
     ],
     declarations: [
         RegistrationComponent,

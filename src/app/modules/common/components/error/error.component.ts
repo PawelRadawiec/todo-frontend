@@ -1,11 +1,11 @@
 import { OnDestroy, OnInit } from '@angular/core';
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
-import { State } from '../../store/state/app.state';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { selectError } from '../../store/selectors/error.selector';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormGroup } from '@angular/forms';
+import { State } from 'src/app/store/state/app.state';
+import { selectError } from 'src/app/store/selectors/error.selector';
 
 
 @AutoUnsubscribe({arrayName: 'subscriptions'})

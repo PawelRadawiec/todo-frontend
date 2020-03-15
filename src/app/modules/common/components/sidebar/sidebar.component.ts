@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { State } from '../../store/state/app.state';
 import { SearchRequest } from 'src/app/store/todos/todos.actions';
 import { TodoFilter } from 'src/app/shared/models/todo.model';
 import { AddTodoComponent } from 'src/app/modules/todo/components/add-todo/add-todo.component';
 import { AddProjectComponent } from 'src/app/modules/project/components/add-project/add-project.component';
+import { State } from 'src/app/store/state/app.state';
 
 @Component({
   selector: 'app-sidebar',

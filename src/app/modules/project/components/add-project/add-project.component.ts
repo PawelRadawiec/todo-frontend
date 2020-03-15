@@ -6,9 +6,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ProjectCreateRequest } from 'src/app/store/project/project.actions';
 import { Subscription } from 'rxjs';
 import { selectProject } from 'src/app/store/selectors/project.selector';
-import { ErrorComponent } from 'src/app/components/error/error.component';
 import { Project } from 'src/app/shared/models/project.model';
 import { FormInit } from 'src/app/shared/models/form.interface';
+import { ErrorComponent } from 'src/app/modules/common/components/error/error.component';
 
 @Component({
   selector: 'app-add-project',

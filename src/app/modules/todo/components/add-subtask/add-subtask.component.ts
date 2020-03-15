@@ -9,7 +9,7 @@ import { selectGetByIdTodo, selectEditResponse } from 'src/app/store/selectors/t
 import { selectProjectId } from 'src/app/store/selectors/project.selector';
 import { Project } from 'src/app/shared/models/project.model';
 import { Todo } from 'src/app/shared/models/todo.model';
-import { ErrorComponent } from 'src/app/components/error/error.component';
+import { ErrorComponent } from 'src/app/modules/common/components/error/error.component';
 
 @Component({
   selector: 'app-add-subtask',
