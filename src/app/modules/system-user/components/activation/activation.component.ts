@@ -18,10 +18,11 @@ export class ActivationComponent implements OnInit {
     this.subscriptions.push(store.select(selectActiveAccount)
       .subscribe(activeAccount => {
         this.activeAccount = activeAccount;
-      }))
+      }));
   }
 
   ngOnInit() {
   }
+
 
 }

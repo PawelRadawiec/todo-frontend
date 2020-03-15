@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
-import { WelcomeComponent } from './components/welcome/welcome.component';
 import { ErrorComponent } from './components/error/error.component';
-import { LogoutComponent } from './components/logout/logout.component';
 import { RouteGuardService } from './shared/service/route-guard.service';
-import { RegistrationComponent } from './components/registration/registration.component';
-import { ActivationComponent } from './components/activation/activation.component';
 import { ActivationResolver } from './shared/resolvers/activation.resolver';
 import { ProjectListResolver } from './shared/resolvers/project-list.resolver';
 import { TodosResolver } from './shared/resolvers/todos.resolver';
 import { AddTodoComponent } from './modules/todo/components/add-todo/add-todo.component';
 import { ListTodosComponent } from './modules/todo/components/list-todos/list-todos.component';
 import { ProjectListComponent } from './modules/project/components/project-list/project-list.component';
+import { LoginComponent } from './modules/system-user/components/login/login.component';
+import { RegistrationComponent } from './modules/system-user/components/registration/registration.component';
+import { LogoutComponent } from './modules/system-user/components/logout/logout.component';
+import { WelcomeComponent } from './modules/system-user/components/welcome/welcome.component';
+import { ActivationComponent } from './modules/system-user/components/activation/activation.component';
 
 
 const routes: Routes = [

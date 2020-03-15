@@ -3,10 +3,10 @@ import { Store, select } from '@ngrx/store';
 import { State } from 'src/app/store/state/app.state';
 import { RegistrationRequest } from 'src/app/store/system-user/system-user.actions';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { ErrorComponent } from '../error/error.component';
 import { Subscription } from 'rxjs';
 import { selectRegisteredUser } from 'src/app/store/selectors/system-user.selector';
 import { SystemUser } from 'src/app/shared/models/system-user.model';
+import { ErrorComponent } from 'src/app/components/error/error.component';
 
 
 @Component({
