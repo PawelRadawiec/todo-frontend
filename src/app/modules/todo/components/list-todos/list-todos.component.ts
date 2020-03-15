@@ -1,17 +1,17 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { State } from '../../store/state/app.state';
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 import { AddTodoComponent } from '../add-todo/add-todo.component';
 import { selectProjectTodos } from 'src/app/store/selectors/todo.selector';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import * as _ from 'lodash';
 import { ActivatedRoute } from '@angular/router';
-import * as todoActions from '../../store/todos/todos.actions';
+import * as todoActions from '../../../../store/todos/todos.actions';
 import { AddSubtaskComponent } from '../add-subtask/add-subtask.component';
 import { Todo, TodoFilter } from 'src/app/shared/models/todo.model';
 import { Project } from 'src/app/shared/models/project.model';
+import { State } from 'src/app/store/state/app.state';
 
 
 @Component({

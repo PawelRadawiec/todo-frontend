@@ -3,16 +3,16 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { ErrorComponent } from './components/error/error.component';
-import { ListTodosComponent } from './components/list-todos/list-todos.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { RouteGuardService } from './shared/service/route-guard.service';
-import { AddTodoComponent } from './components/add-todo/add-todo.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { ActivationComponent } from './components/activation/activation.component';
 import { ActivationResolver } from './shared/resolvers/activation.resolver';
 import { ProjectListResolver } from './shared/resolvers/project-list.resolver';
 import { TodosResolver } from './shared/resolvers/todos.resolver';
-import { ProjectListComponent } from './project/project/components/project-list/project-list.component';
+import { AddTodoComponent } from './modules/todo/components/add-todo/add-todo.component';
+import { ListTodosComponent } from './modules/todo/components/list-todos/list-todos.component';
+import { ProjectListComponent } from './modules/project/components/project-list/project-list.component';
 
 
 const routes: Routes = [

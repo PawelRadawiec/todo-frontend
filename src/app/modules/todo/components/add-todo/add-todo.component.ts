@@ -1,17 +1,17 @@
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { select, Store } from '@ngrx/store';
-import { State } from '../../store/state/app.state';
-import { SearchRequest, CreateTodoRequest } from '../../store/todos/todos.actions';
 import { Subscription } from 'rxjs';
-import { selectGetByIdTodo, selectCreateResponse } from '../../store/selectors/todo.selector';
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { ErrorComponent } from '../error/error.component';
 import { selectProjectId } from 'src/app/store/selectors/project.selector';
 import { Project } from 'src/app/shared/models/project.model';
 import { Todo, TodoFilter } from 'src/app/shared/models/todo.model';
-import * as todoActions from '../../store/todos/todos.actions';
+import * as todoActions from '../../../../store/todos/todos.actions';
+import { State } from 'src/app/store/state/app.state';
+import { ErrorComponent } from 'src/app/components/error/error.component';
+import { selectGetByIdTodo, selectCreateResponse } from 'src/app/store/selectors/todo.selector';
+import { CreateTodoRequest, SearchRequest } from 'src/app/store/todos/todos.actions';
 
 @Component({
   selector: 'app-add-todo',

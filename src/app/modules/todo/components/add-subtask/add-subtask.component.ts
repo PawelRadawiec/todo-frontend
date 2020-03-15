@@ -3,13 +3,13 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { State } from 'src/app/store/state/app.state';
 import { Store, select } from '@ngrx/store';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ErrorComponent } from '../error/error.component';
 import { TodoEditRequest } from 'src/app/store/todos/todos.actions';
 import * as _ from 'lodash';
 import { selectGetByIdTodo, selectEditResponse } from 'src/app/store/selectors/todo.selector';
 import { selectProjectId } from 'src/app/store/selectors/project.selector';
 import { Project } from 'src/app/shared/models/project.model';
 import { Todo } from 'src/app/shared/models/todo.model';
+import { ErrorComponent } from 'src/app/components/error/error.component';
 
 @Component({
   selector: 'app-add-subtask',
