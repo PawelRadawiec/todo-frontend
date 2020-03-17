@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { BasicAuthenticationService } from 'src/app/shared/service/basic-authentication.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {AuthenticationService} from 'src/app/shared/service/authentication.service';
+import {FormGroup, FormBuilder} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -15,9 +15,10 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authService: BasicAuthenticationService,
+    private authService: AuthenticationService,
     private formBuilder: FormBuilder
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.initLoginForm();
@@ -30,14 +31,14 @@ export class LoginComponent implements OnInit {
     };
     this.authService.executeJwtAuthService(formValue.login, formValue.password)
       .subscribe(() => {
-        this.router.navigate(['welcome', formValue.login])
-        this.invalidLogin = false
-      },
+          this.router.navigate(['welcome', formValue.login])
+          this.invalidLogin = false;
+        },
         error => {
           console.log(error),
-            this.invalidLogin = true
+            this.invalidLogin = true;
         }
-      )
+      );
   }
 
   initLoginForm() {
@@ -46,5 +47,6 @@ export class LoginComponent implements OnInit {
       password: []
     });
   }
+
 
 }

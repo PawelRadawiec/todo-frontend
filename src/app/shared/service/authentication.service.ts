@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {map} from 'rxjs/operators';
 
 export const TOKEN = 'token';
 export const AUTH_USER = 'authUser';
@@ -8,24 +8,9 @@ export const AUTH_USER = 'authUser';
 @Injectable({
   providedIn: 'root'
 })
-export class BasicAuthenticationService {
+export class AuthenticationService {
 
-  constructor(private http: HttpClient) { }
-
-  executeAuthService(login: string, password: string) {
-    const basicAuthHeaderString = 'Basic ' + window.btoa(login + ':' + password);
-    const headers = new HttpHeaders({
-      Authorization: basicAuthHeaderString
-    });
-    return this.http.get<AuthenticationBean>('http://localhost:8080/basicauth', { headers }).pipe(
-      map(
-        data => {
-          sessionStorage.setItem(AUTH_USER, login);
-          sessionStorage.setItem(TOKEN, basicAuthHeaderString);
-          return data;
-        }
-      )
-    );
+  constructor(private http: HttpClient) {
   }
 
   executeJwtAuthService(login: string, password: string) {
@@ -41,7 +26,7 @@ export class BasicAuthenticationService {
           return data;
         })
     );
-    
+
   }
 
   getAuthUser() {
@@ -64,6 +49,3 @@ export class BasicAuthenticationService {
   }
 }
 
-export class AuthenticationBean {
-  message: string;
-}
