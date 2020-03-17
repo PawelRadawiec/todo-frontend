@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthenticationService} from 'src/app/shared/service/authentication.service';
 import {FormGroup, FormBuilder} from '@angular/forms';
+import {Store} from '@ngrx/store';
+import {State} from '../../../../store/state/app.state';
+import * as authorizationActions from '../../../../store/authentication/authorization.actions';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +19,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthenticationService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    protected store: Store<State>
   ) {
   }
 
@@ -29,16 +33,7 @@ export class LoginComponent implements OnInit {
       login: this.loginForm.value.login,
       password: this.loginForm.value.password
     };
-    this.authService.executeJwtAuthService(formValue.login, formValue.password)
-      .subscribe(() => {
-          this.router.navigate(['welcome', formValue.login])
-          this.invalidLogin = false;
-        },
-        error => {
-          console.log(error),
-            this.invalidLogin = true;
-        }
-      );
+    this.store.dispatch(new authorizationActions.AuthenticationRequest(formValue.login, formValue.password));
   }
 
   initLoginForm() {

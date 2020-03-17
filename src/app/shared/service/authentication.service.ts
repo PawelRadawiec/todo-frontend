@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {map} from 'rxjs/operators';
+import {TokenResponse} from '../../store/authentication/model/token-response';
 
 export const TOKEN = 'token';
 export const AUTH_USER = 'authUser';
@@ -13,20 +13,12 @@ export class AuthenticationService {
   constructor(private http: HttpClient) {
   }
 
-  executeJwtAuthService(login: string, password: string) {
+  authorizationRequest(login: string, password: string) {
     const body = {
       username: login,
       password: password
-    }
-    return this.http.post<any>('http://localhost:8080/authenticate', body).pipe(
-      map(
-        data => {
-          sessionStorage.setItem(AUTH_USER, login);
-          sessionStorage.setItem(TOKEN, `Bearer ${data.token}`);
-          return data;
-        })
-    );
-
+    };
+    return this.http.post<TokenResponse>('http://localhost:8080/authenticate', body);
   }
 
   getAuthUser() {
@@ -47,5 +39,7 @@ export class AuthenticationService {
     sessionStorage.removeItem(AUTH_USER);
     sessionStorage.removeItem(TOKEN);
   }
+
+
 }
 

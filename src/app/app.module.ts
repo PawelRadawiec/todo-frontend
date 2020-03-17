@@ -25,6 +25,7 @@ import { CommonModule } from '@angular/common';
 import { MenuComponent } from './modules/common/components/menu/menu.component';
 import { FooterComponent } from './modules/common/components/footer/footer.component';
 import { SidebarComponent } from './modules/common/components/sidebar/sidebar.component';
+import {AuthorizationEffects} from './store/authentication/authorization.effects';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { SidebarComponent } from './modules/common/components/sidebar/sidebar.co
     EffectsModule.forRoot([
       TodoEffects,
       SystemUserEffects,
-      ProjectEffects
+      ProjectEffects,
+      AuthorizationEffects
     ]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreModule.forRoot(reducers, {
