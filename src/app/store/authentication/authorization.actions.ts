@@ -3,6 +3,7 @@ import {TokenResponse} from './model/token-response';
 
 export const AUTHENTICATION_REQUEST = '[Authentication] AuthenticationRequest';
 export const AUTHENTICATION_RESPONSE = '[Authentication] AuthenticationResponse';
+export const AUTHENTICATION_CLEAR = '[Authentication] AuthenticationClear';
 
 export class AuthenticationRequest implements Action {
   readonly type = AUTHENTICATION_REQUEST;
@@ -21,5 +22,10 @@ export class AuthenticationResponse implements Action {
   }
 }
 
+export class AuthenticationClear implements Action {
+  readonly type = AUTHENTICATION_CLEAR;
+}
+
 export type AuthorizationActions = AuthenticationRequest
-  | AuthenticationResponse;
+  | AuthenticationResponse
+  | AuthenticationClear;

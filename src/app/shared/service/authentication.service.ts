@@ -1,6 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {TokenResponse} from '../../store/authentication/model/token-response';
+import {State} from '../../store/state/app.state';
+import {Store} from '@ngrx/store';
+import * as authActions from '../../store/authentication/authorization.actions';
 
 export const TOKEN = 'token';
 export const AUTH_USER = 'authUser';
@@ -10,7 +13,10 @@ export const AUTH_USER = 'authUser';
 })
 export class AuthenticationService {
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private store: Store<State>
+  ) {
   }
 
   authorizationRequest(login: string, password: string) {
@@ -38,6 +44,7 @@ export class AuthenticationService {
   logout() {
     sessionStorage.removeItem(AUTH_USER);
     sessionStorage.removeItem(TOKEN);
+    this.store.dispatch(new authActions.AuthenticationClear());
   }
 
 

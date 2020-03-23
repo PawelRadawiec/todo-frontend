@@ -45,7 +45,7 @@ export interface ProjectState {
 }
 
 export interface AuthorizationState {
-  user: SystemUser;
+  isAuthenticated: boolean;
 }
 
 export const reducers: ActionReducerMap<State> = {

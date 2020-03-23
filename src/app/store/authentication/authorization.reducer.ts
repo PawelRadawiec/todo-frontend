@@ -2,7 +2,7 @@ import * as authorizationActions from './authorization.actions';
 import {AuthorizationState} from '../state/app.state';
 
 export const initialState: AuthorizationState = {
-  user: null
+  isAuthenticated: false
 };
 
 export function reducer(state = initialState, action: authorizationActions.AuthorizationActions) {
@@ -10,7 +10,13 @@ export function reducer(state = initialState, action: authorizationActions.Autho
     case authorizationActions.AUTHENTICATION_RESPONSE: {
       return {
         ...state,
-        user: action.response.user
+        isAuthenticated: true
+      };
+    }
+    case authorizationActions.AUTHENTICATION_CLEAR: {
+      return {
+        ...state,
+        isAuthenticated: false
       };
     }
   }

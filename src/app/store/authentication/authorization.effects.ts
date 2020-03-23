@@ -19,15 +19,13 @@ export class AuthorizationEffects {
   @Effect()
   authorizationRequest = this.actions$.pipe(
     ofType(authActions.AUTHENTICATION_REQUEST),
-    switchMap((action: authActions.AuthenticationRequest) => {
-      return this.authService.authorizationRequest(action.login, action.password)
-        .pipe(
-          map((response) => {
-            sessionStorage.setItem(AUTH_USER, action.login);
-            sessionStorage.setItem(TOKEN, `Bearer ${response.token}`);
-            return new authActions.AuthenticationResponse(response);
-          })
-        );
+    switchMap((action: authActions.AuthenticationRequest) =>
+      this.authService.authorizationRequest(action.login, action.password)
+    ),
+    map(response => {
+      sessionStorage.setItem(AUTH_USER, response.user.login);
+      sessionStorage.setItem(TOKEN, `Bearer ${response.token}`);
+      return new authActions.AuthenticationResponse(response);
     })
   );
 
