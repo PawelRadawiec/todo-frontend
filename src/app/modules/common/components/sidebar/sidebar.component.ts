@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {SearchRequest} from 'src/app/store/todos/todos.actions';
 import {TodoFilter} from 'src/app/shared/models/todo.model';
@@ -17,7 +17,7 @@ import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
   styleUrls: ['./sidebar.component.css']
 })
 @AutoUnsubscribe({arrayName: 'subscriptions'})
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit, OnDestroy {
   @ViewChild(AddTodoComponent) childTodo: AddTodoComponent;
   @ViewChild(AddProjectComponent) childProject: AddProjectComponent;
   subscriptions: Subscription[] = [];
@@ -39,6 +39,9 @@ export class SidebarComponent implements OnInit {
       this.subscribeTodoList(),
       this.subscribeProjects()
     );
+  }
+
+  ngOnDestroy() {
   }
 
   _toggleSidebar() {
