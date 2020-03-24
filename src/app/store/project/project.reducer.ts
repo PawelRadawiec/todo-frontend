@@ -34,7 +34,7 @@ export function reducer(state = initialState, action: projectActions.ProjectActi
       return {
         ...state,
         projectId: action.projectId
-      }
+      };
     }
 
   }

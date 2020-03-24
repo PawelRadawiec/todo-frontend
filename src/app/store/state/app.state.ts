@@ -7,9 +7,10 @@ import * as fromTodoReducer from '../todos/todo.reducer';
 import * as fromSystemUserReducer from '../system-user/system-user.reducer';
 import * as fromErrorReducer from '../errors/error.reducer';
 import * as fromProjectReducer from '../project/project.reducer';
-import { Todo } from 'src/app/shared/models/todo.model';
-import { SystemUser } from 'src/app/shared/models/system-user.model';
-import { Project } from 'src/app/shared/models/project.model';
+import * as fromAuthorizationReducer from '../authentication/authorization.reducer';
+import {Todo} from 'src/app/shared/models/todo.model';
+import {SystemUser} from 'src/app/shared/models/system-user.model';
+import {Project} from 'src/app/shared/models/project.model';
 
 export interface State {
   userName?: string;
@@ -17,6 +18,7 @@ export interface State {
   systemUserState: SystemUserState;
   projectState: ProjectState;
   errorState: ErrorsState;
+  authorizationState: AuthorizationState;
 }
 
 export interface TodoState {
@@ -42,11 +44,16 @@ export interface ProjectState {
   projectId: number;
 }
 
+export interface AuthorizationState {
+  isAuthenticated: boolean;
+}
+
 export const reducers: ActionReducerMap<State> = {
   todoState: fromTodoReducer.reducer,
   systemUserState: fromSystemUserReducer.reducer,
   projectState: fromProjectReducer.reducer,
-  errorState: fromErrorReducer.reducer
+  errorState: fromErrorReducer.reducer,
+  authorizationState: fromAuthorizationReducer.reducer
 };
 
 export const metaReducers: MetaReducer<State>[] = !environment.production ? [] : [];
