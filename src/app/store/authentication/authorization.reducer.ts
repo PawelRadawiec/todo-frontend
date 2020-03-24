@@ -19,6 +19,12 @@ export function reducer(state = initialState, action: authorizationActions.Autho
         isAuthenticated: false
       };
     }
+    case authorizationActions.AUTHENTICATION_SUCCESS: {
+      return {
+        ...state,
+        isAuthenticated: true
+      };
+    }
   }
 
   return state;
