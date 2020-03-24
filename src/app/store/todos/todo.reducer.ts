@@ -1,5 +1,5 @@
 import * as todoActions from './todos.actions';
-import { TodoState } from '../state/app.state';
+import {TodoState} from '../state/app.state';
 
 
 export const initialState: TodoState = {
@@ -40,6 +40,12 @@ export function reducer(state = initialState, action: todoActions.TodoActions): 
       return {
         ...state,
         projectTodoList: action.response
+      };
+    }
+    case todoActions.CLEAR_LIST: {
+      return {
+        ...state,
+        projectTodoList: []
       };
     }
 

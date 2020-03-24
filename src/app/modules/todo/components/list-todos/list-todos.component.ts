@@ -1,17 +1,18 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Store, select } from '@ngrx/store';
-import { Subscription } from 'rxjs';
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
-import { AddTodoComponent } from '../add-todo/add-todo.component';
-import { selectProjectTodos } from 'src/app/store/selectors/todo.selector';
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Store, select} from '@ngrx/store';
+import {Subscription} from 'rxjs';
+import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
+import {AddTodoComponent} from '../add-todo/add-todo.component';
+import {selectProjectTodos} from 'src/app/store/selectors/todo.selector';
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import * as _ from 'lodash';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import * as todoActions from '../../../../store/todos/todos.actions';
-import { AddSubtaskComponent } from '../add-subtask/add-subtask.component';
-import { Todo, TodoFilter } from 'src/app/shared/models/todo.model';
-import { Project } from 'src/app/shared/models/project.model';
-import { State } from 'src/app/store/state/app.state';
+import {AddSubtaskComponent} from '../add-subtask/add-subtask.component';
+import {Todo, TodoFilter} from 'src/app/shared/models/todo.model';
+import {Project} from 'src/app/shared/models/project.model';
+import {State} from 'src/app/store/state/app.state';
+import {ClearTodoList} from '../../../../store/todos/todos.actions';
 
 
 @Component({
@@ -19,7 +20,7 @@ import { State } from 'src/app/store/state/app.state';
   templateUrl: './list-todos.component.html',
   styleUrls: ['./list-todos.component.css']
 })
-@AutoUnsubscribe({ arrayName: 'subscriptions' })
+@AutoUnsubscribe({arrayName: 'subscriptions'})
 export class ListTodosComponent implements OnInit, OnDestroy {
   @ViewChild(AddTodoComponent) child: AddTodoComponent;
   @ViewChild(AddSubtaskComponent) subtaskChild: AddSubtaskComponent;
@@ -47,6 +48,7 @@ export class ListTodosComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.store.dispatch(new ClearTodoList());
   }
 
   openSubtaskModal(todo: Todo) {

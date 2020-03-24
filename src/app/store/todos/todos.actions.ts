@@ -1,5 +1,5 @@
-import { Action } from '@ngrx/store';
-import { TodoFilter, Todo } from 'src/app/shared/models/todo.model';
+import {Action} from '@ngrx/store';
+import {TodoFilter, Todo} from 'src/app/shared/models/todo.model';
 
 export const SEARCH_REQUEST = '[Todo] SearchRequest';
 export const SEARCH_RESPONSE = '[Todo] SearchResponse';
@@ -12,10 +12,12 @@ export const EDIT_RESPONSE = '[Todo] TodoEditResponse';
 export const DELETE_BY_ID = '[Todo] TodoDeleteById';
 export const PROJECT_TODO_LIST_REQUEST = '[Todo] GetProjectTodoListRequest';
 export const PROJECT_TODO_LIST_RESPONSE = '[Todo] GetProjectTodoListResponse';
+export const CLEAR_LIST = '[Todo] ClearTodoList';
 
 
 export class SearchRequest implements Action {
   readonly type = SEARCH_REQUEST;
+
   constructor(public filter: TodoFilter) {
 
   }
@@ -79,6 +81,7 @@ export class TodoEditResponse implements Action {
 
 export class TodoDeleteById implements Action {
   readonly type = DELETE_BY_ID;
+
   constructor(public todoId: number) {
 
   }
@@ -100,6 +103,10 @@ export class GetProjectTodoListResponse implements Action {
   }
 }
 
+export class ClearTodoList implements Action {
+  readonly type = CLEAR_LIST;
+}
+
 
 export type TodoActions = SearchRequest
   | SearchResponse
@@ -111,4 +118,5 @@ export type TodoActions = SearchRequest
   | TodoEditResponse
   | TodoDeleteById
   | GetProjectTodoListRequest
-  | GetProjectTodoListResponse;
+  | GetProjectTodoListResponse
+  | ClearTodoList;

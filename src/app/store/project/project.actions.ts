@@ -1,5 +1,5 @@
-import { Action } from '@ngrx/store';
-import { Project, ProjectFilter } from 'src/app/shared/models/project.model';
+import {Action} from '@ngrx/store';
+import {Project, ProjectFilter} from 'src/app/shared/models/project.model';
 
 export const CREATE_REQUEST = '[Project] ProjectCreateRequest';
 export const CREATE_RESPONSE = '[Project] ProjectCreateResponse';
@@ -8,6 +8,7 @@ export const SEARCH_RESPONSE = '[Project] ProjectSearchResponse';
 export const GET_BY_ID_REQUEST = '[Project] ProjectByIdRequest';
 export const GET_BY_ID_RESPONSE = '[Project] ProjectByIdResponse';
 export const SET_PROJECT_ID = '[Project] ProjectSetId';
+export const CLEAR_LIST = '[Project] ProjectClearList';
 
 
 export class ProjectCreateRequest implements Action {
@@ -44,6 +45,7 @@ export class ProjectSearchResponse implements Action {
 
 export class ProjectByIdRequest implements Action {
   readonly type = GET_BY_ID_REQUEST;
+
   constructor(public projectId: number) {
 
   }
@@ -51,6 +53,7 @@ export class ProjectByIdRequest implements Action {
 
 export class ProjectByIdResponse implements Action {
   readonly type = GET_BY_ID_RESPONSE;
+
   constructor(public response: Project) {
 
   }
@@ -64,6 +67,10 @@ export class ProjectSetId implements Action {
   }
 }
 
+export class ProjectClearList implements Action {
+  readonly type = CLEAR_LIST;
+}
+
 
 export type ProjectActions = ProjectCreateRequest
   | ProjectCreateResponse
@@ -71,4 +78,5 @@ export type ProjectActions = ProjectCreateRequest
   | ProjectSearchResponse
   | ProjectByIdRequest
   | ProjectByIdResponse
-  | ProjectSetId;
+  | ProjectSetId
+  | ProjectClearList;
